@@ -476,7 +476,7 @@ page('downabit/privacy/', {
 <p>If this policy changes, the new version is published on this page with a new date. Material changes are also described in the app's release notes.</p>
 
 <h2>12. Contact</h2>
-<p>Questions about privacy: ${mail}. We answer within 30 days.</p>`),
+<p>Questions about privacy: ${mail}.</p>`),
 })
 
 // ---- Terms ------------------------------------------------------------------------------------------------------------
@@ -531,7 +531,7 @@ page('downabit/support/', {
   nav: 'support', sub: 'support',
   body: doc(`
 <h1>Downabit support</h1>
-<p class="updated">We answer within two working days.</p>
+<p class="updated">Write to us and we will help.</p>
 <div class="contact-grid">
   <div class="glass"><strong>Email</strong><p>${mail}</p></div>
   <div class="glass"><strong>Please include</strong><p class="muted">Your TV model and what you see on the screen. A photo of the screen helps.</p></div>
