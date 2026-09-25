@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Network share (SMB) | Downabit guides</title>
+<meta name="description" content="Save to a shared folder on a Windows PC, a Mac or a NAS.">
+<link rel="canonical" href="https://shmerling.app/downabit/guides/network-share/">
+<meta name="theme-color" content="#020617">
+<meta name="color-scheme" content="dark">
+<meta property="og:site_name" content="Shmerling Apps">
+<meta property="og:title" content="Network share (SMB) | Downabit guides">
+<meta property="og:description" content="Save to a shared folder on a Windows PC, a Mac or a NAS.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shmerling.app/downabit/guides/network-share/">
+<meta property="og:image" content="https://shmerling.app/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Network share (SMB) | Downabit guides">
+<meta name="twitter:description" content="Save to a shared folder on a Windows PC, a Mac or a NAS.">
+<meta name="twitter:image" content="https://shmerling.app/assets/og-image.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="navbar">
+  <div class="inner">
+    <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b8ff0"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#bm)"/><path d="M21 11.2c-.9-1.5-2.7-2.4-4.8-2.4-2.8 0-4.8 1.5-4.8 3.6 0 4.7 9.9 2.6 9.9 7.4 0 2.2-2.1 3.8-5 3.8-2.3 0-4.2-1-5.2-2.7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>Shmerling Apps</a>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav class="nav-links" id="nav-links" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/apps/">Apps</a>
+      <a href="/downabit/">Downabit</a>
+      <a href="/downabit/guides/" aria-current="page">Guides</a>
+      <a href="/downabit/support/">Support</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="container narrow doc-wrap"><nav class="subnav" aria-label="Downabit pages"><a href="/downabit/">Overview</a><a href="/downabit/guides/" aria-current="page">Guides</a><a href="/downabit/support/">Support</a><a href="/downabit/privacy/">Privacy</a><a href="/downabit/terms/">Terms</a><a href="/downabit/delete-data/">Delete data</a><a href="/downabit/subscribe/">Subscription</a></nav></div>
+
+<div class="container narrow">
+  <article class="glass doc">
+
+<p class="kicker"><a href="/downabit/guides/">Guides</a></p>
+<h1>Network share (SMB)</h1>
+<p class="updated">Save to a shared folder on a Windows PC, a Mac or a NAS.</p>
+<nav class="chips" aria-label="Guides"><a href="/downabit/guides/telegram/">Sign in and your channel</a><a href="/downabit/guides/tv-and-usb/">TV storage and USB drives</a><a href="/downabit/guides/network-share/" aria-current="page">Network share (SMB)</a><a href="/downabit/guides/webdav/">WebDAV</a><a href="/downabit/guides/google-drive/">Google Drive</a><a href="/downabit/guides/dropbox/">Dropbox</a></nav>
+
+<nav class="toc" aria-label="On this page"><span>On this page</span><a href="#before">Before you start</a><a href="#tv">On the TV</a><a href="#windows">Windows</a><a href="#mac">Mac</a><a href="#nas">NAS</a><a href="#synology">Synology</a><a href="#qnap">QNAP</a><a href="#other">Other NAS and routers</a><a href="#trouble">Troubleshooting</a></nav>
+<h2 id="before">Before you start</h2>
+<ul>
+  <li>The TV and the computer or NAS must be on the <strong>same home network</strong> (not a guest Wi-Fi).</li>
+  <li>You need a <strong>shared folder</strong> and an <strong>account that may change files</strong> in it. The steps for Windows, Mac and NAS are below.</li>
+  <li>Downabit speaks <strong>SMB 2 and SMB 3</strong>, which every computer and NAS from the last ten years supports. Old devices that only offer SMB 1 do not work.</li>
+  <li>The computer must be awake while Downabit saves to it or plays from it.</li>
+</ul>
+
+<h2 id="tv">On the TV</h2>
+<ol class="steps">
+  <li>Open <span class="path">Settings <b>›</b> Cloud &amp; network</span> and find the card <strong>Network share (NAS, Windows PC)</strong>.</li>
+  <li>Press <span class="ui">Find shared folders on my network</span>. Downabit lists the computers and NAS it finds. Pick yours.
+    <br><span class="muted">Not listed? Press <span class="ui">Enter address manually</span> and type its address, for example <code>192.168.1.20</code>, then <span class="ui">Show shared folders</span>. The sections below show where to find the address.</span></li>
+  <li>When it asks, sign in with the <strong>User name</strong> and <strong>Password</strong> of an account on that computer or NAS. Leave <em>Domain</em> empty unless you are on a work network.</li>
+  <li>Pick the shared folder. Downabit checks that it may save there and shows the free space.</li>
+  <li>Done: the share appears in the <em>Save to</em> list. Files go into a <strong>Downabit</strong> folder inside it, and videos kept there play straight from the share.</li>
+</ol>
+
+<h2 id="windows">Windows 10 and 11</h2>
+<h3>1. Share a folder</h3>
+<ol class="steps">
+  <li>Create a folder for the TV, for example <code>C:\TV</code> or a folder on a second drive.</li>
+  <li>Right-click it, choose <strong>Properties</strong>, open the <strong>Sharing</strong> tab and press <strong>Share…</strong>.</li>
+  <li>Choose your own account, set <strong>Permission level</strong> to <strong>Read/Write</strong>, and press <strong>Share</strong>, then <strong>Done</strong>.</li>
+</ol>
+<h3>2. Allow sharing on your home network</h3>
+<ol class="steps">
+  <li>Make sure your network is <strong>Private</strong>: <span class="path">Settings <b>›</b> Network &amp; internet <b>›</b> Wi-Fi or Ethernet <b>›</b> your network</span>, <em>Network profile type</em>: <strong>Private</strong>.</li>
+  <li>Turn on sharing: Windows 11: <span class="path">Settings <b>›</b> Network &amp; internet <b>›</b> Advanced network settings <b>›</b> Advanced sharing settings</span>. Windows 10: <span class="path">Control Panel <b>›</b> Network and Sharing Center <b>›</b> Change advanced sharing settings</span>. Under <strong>Private networks</strong>, turn on <strong>Network discovery</strong> and <strong>File and printer sharing</strong>.</li>
+</ol>
+<h3>3. The account to sign in with</h3>
+<ul>
+  <li>If you sign in to Windows with a <strong>Microsoft account</strong>, the user name is its <strong>email address</strong> and the password is the <strong>Microsoft account password</strong>. Your Windows <em>PIN</em> does not work over the network.</li>
+  <li>If you use a <strong>local account</strong>, use its name and password. An account without a password cannot be used over the network: give it one, or create a separate local account for the TV and give it Read/Write on the folder.</li>
+</ul>
+<h3>4. The address</h3>
+<p><span class="path">Settings <b>›</b> Network &amp; internet <b>›</b> your network <b>›</b> Properties</span>: the <strong>IPv4 address</strong>, for example <code>192.168.1.20</code>. The computer's name (<span class="path">Settings <b>›</b> System <b>›</b> About</span>) usually works too.</p>
+<div class="note"><strong>Keep it awake.</strong> A sleeping PC cannot be reached. While downloading or watching from it, set <span class="path">Settings <b>›</b> System <b>›</b> Power <b>›</b> Sleep</span> to <em>Never</em> when plugged in.</div>
+
+<h2 id="mac">Mac (macOS 13 Ventura and later)</h2>
+<ol class="steps">
+  <li>Open <span class="path">System Settings <b>›</b> General <b>›</b> Sharing</span> and turn on <strong>File Sharing</strong>.</li>
+  <li>Press the <strong>ⓘ</strong> next to File Sharing. Under <em>Shared Folders</em> press <strong>+</strong> and add the folder for the TV. Under <em>Users</em>, set your account to <strong>Read &amp; Write</strong>.</li>
+  <li>Press <strong>Options…</strong>, make sure <strong>Share files and folders using SMB</strong> is on, and under <em>Windows File Sharing</em> tick your account and type its password. Without this tick, SMB sign-in with that account is refused.</li>
+  <li>The address is shown on the same screen (<code>smb://192.168.1.21</code>); on the TV type only the number part.</li>
+  <li>Sign in with your Mac account's <strong>short name</strong> (the name of your home folder) and its password.</li>
+</ol>
+<p class="muted">macOS 12 and earlier: the same settings are in <span class="path">System Preferences <b>›</b> Sharing <b>›</b> File Sharing <b>›</b> Options…</span>. To keep the Mac reachable, turn on <em>Wake for network access</em> in the battery or energy settings.</p>
+
+<h2 id="nas">NAS in general</h2>
+<ol class="steps">
+  <li>Turn on the <strong>SMB</strong> (Windows file sharing) service and set the minimum protocol to <strong>SMB 2</strong> or higher.</li>
+  <li>Create a <strong>shared folder</strong>, or use one you have, such as <em>video</em> or <em>media</em>.</li>
+  <li>Give a user account <strong>read/write</strong> permission on that folder. A separate user just for the TV is a good idea.</li>
+  <li>Find the NAS address in its admin page or your router's list of devices, then follow <a href="#tv">On the TV</a>.</li>
+</ol>
+<h3 id="synology">Synology (DSM 7)</h3>
+<ol class="steps">
+  <li><span class="path">Control Panel <b>›</b> File Services <b>›</b> SMB</span>: tick <strong>Enable SMB service</strong>. In <em>Advanced Settings</em>, set <em>Minimum SMB protocol</em> to <strong>SMB2</strong> (or higher).</li>
+  <li><span class="path">Control Panel <b>›</b> Shared Folder</span>: create a folder or pick one, press <strong>Edit</strong>, <strong>Permissions</strong>, and give your user <strong>Read/Write</strong>.</li>
+  <li>On the TV, sign in with that DSM user name and password.</li>
+</ol>
+<h3 id="qnap">QNAP (QTS / QuTS hero)</h3>
+<ol class="steps">
+  <li><span class="path">Control Panel <b>›</b> Network &amp; File Services <b>›</b> Win/Mac/NFS/WebDAV <b>›</b> Microsoft Networking</span>: tick <strong>Enable file service for Microsoft networking</strong>. In <em>Advanced Options</em>, set the lowest SMB version to <strong>SMB 2</strong>.</li>
+  <li><span class="path">Control Panel <b>›</b> Privilege <b>›</b> Shared Folders</span>: create a folder or pick one, open <strong>Edit Shared Folder Permission</strong>, and give your user <strong>RW</strong>.</li>
+  <li>On the TV, sign in with that QNAP user name and password.</li>
+</ol>
+<h3 id="other">Other NAS, routers and Raspberry Pi</h3>
+<p>TrueNAS, Unraid, OpenMediaVault, WD My Cloud, Asustor and Samba on Linux or a Raspberry Pi all work the same way: an SMB share, a user with write permission, SMB 2 or newer. Many routers can share a USB disk over SMB too; check that the router offers SMB 2, since some older ones only offer SMB 1.</p>
+
+<h2 id="trouble">Troubleshooting</h2>
+<div class="faq">
+  <details><summary>"No computers with shared folders were found"</summary><div><p>Check the TV and the computer are on the same network (not a guest Wi-Fi), that the computer is on and awake, and that sharing is turned on. Then use <span class="ui">Enter address manually</span> with its IP address: some networks block the search even though the share works.</p></div></details>
+  <details><summary>"… needs a user name and password to save files"</summary><div><p>The folder does not let guests write. Sign in with an account on that computer or NAS, as described above.</p></div></details>
+  <details><summary>"Signed in as …, but … does not let that account save files"</summary><div><p>The account may read but not change files. Give it <strong>Read/Write</strong> (Windows), <strong>Read &amp; Write</strong> (Mac) or <strong>RW</strong> (NAS) on that folder, or pick another folder.</p></div></details>
+  <details><summary>Sign-in keeps failing on Windows</summary><div><p>Use the Microsoft account's email and password, not the PIN. If that still fails, create a local account with a password for the TV (<span class="path">Settings <b>›</b> Accounts <b>›</b> Other users</span>) and give it Read/Write on the folder.</p></div></details>
+  <details><summary>Sign-in keeps failing on a Mac</summary><div><p>Open File Sharing <span class="path">Options…</span> and make sure your account is ticked under <em>Windows File Sharing</em>. Use the account's short name.</p></div></details>
+  <details><summary>It worked yesterday, today it does not</summary><div><p>The computer may be asleep, or its address may have changed. Give the computer a fixed address in your router (a "DHCP reservation"), or connect again with <span class="ui">Find a different shared folder</span>.</p></div></details>
+  <details><summary>Old NAS or router</summary><div><p>If it only offers SMB 1, Downabit cannot use it. Look for a firmware update that adds SMB 2, or use its WebDAV service if it has one.</p></div></details>
+</div>
+
+<h2 id="help">Still stuck?</h2>
+<p>Write to <a href="mailto:support@shmerling.app">support@shmerling.app</a> with your TV model, what you are connecting to and a photo of the screen. The <a href="/downabit/support/">support page</a> answers the most common questions.</p>
+  </article>
+</div>
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="cols">
+      <div class="about">
+        <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b8ff0"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#bm)"/><path d="M21 11.2c-.9-1.5-2.7-2.4-4.8-2.4-2.8 0-4.8 1.5-4.8 3.6 0 4.7 9.9 2.6 9.9 7.4 0 2.2-2.1 3.8-5 3.8-2.3 0-4.2-1-5.2-2.7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>Shmerling Apps</a>
+        <p>Small, careful apps for the big screen. No ads, no tracking, written in plain words.</p>
+        <p><a href="mailto:support@shmerling.app">support@shmerling.app</a></p>
+      </div>
+      <div><h4>Apps</h4><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/apps/">All apps</a></li></ul></div>
+      <div><h4>Downabit</h4><ul>
+        <li><a href="/downabit/guides/">Connection guides</a></li>
+        <li><a href="/downabit/support/">Support</a></li>
+        <li><a href="/downabit/subscribe/">Subscription</a></li>
+        <li><a href="/downabit/privacy/">Privacy policy</a></li>
+        <li><a href="/downabit/terms/">Terms of use</a></li>
+        <li><a href="/downabit/delete-data/">Delete your data</a></li>
+      </ul></div>
+      <div><h4>Get the app</h4><ul>
+        <li><a href="https://play.google.com/store/apps/details?id=app.shmerling.downabit" rel="noopener">Google Play</a></li>
+        <li><a href="https://www.amazon.com/s?k=Downabit&i=mobile-apps" rel="noopener">Amazon Appstore</a></li>
+      </ul></div>
+    </div>
+    <div class="bottom"><span>&copy; 2026 Shmerling Apps. All rights reserved.</span><span><a href="/downabit/privacy/">Privacy</a> &middot; <a href="/downabit/terms/">Terms</a></span></div>
+  </div>
+</footer>
+</body>
+</html>

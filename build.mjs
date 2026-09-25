@@ -4,6 +4,7 @@
 import { writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { buildGuides } from './guides.mjs'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
 
@@ -74,6 +75,7 @@ function layout({ path, title, description, nav, sub, body, jsonLd, image = '/as
   const subnav = sub
     ? `<nav class="subnav" aria-label="Downabit pages">${[
         ['/downabit/', 'Overview', 'overview'],
+        ['/downabit/guides/', 'Guides', 'guides'],
         ['/downabit/support/', 'Support', 'support'],
         ['/downabit/privacy/', 'Privacy', 'privacy'],
         ['/downabit/terms/', 'Terms', 'terms'],
@@ -123,6 +125,7 @@ ${ld}<script src="/assets/site.js" defer></script>
       ${navItem('/', 'Home', 'home')}
       ${navItem('/apps/', 'Apps', 'apps')}
       ${navItem('/downabit/', 'Downabit', 'downabit')}
+      ${navItem('/downabit/guides/', 'Guides', 'guides')}
       ${navItem('/downabit/support/', 'Support', 'support')}
     </nav>
   </div>
@@ -141,6 +144,7 @@ ${body}
       </div>
       <div><h4>Apps</h4><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/apps/">All apps</a></li></ul></div>
       <div><h4>Downabit</h4><ul>
+        <li><a href="/downabit/guides/">Connection guides</a></li>
         <li><a href="/downabit/support/">Support</a></li>
         <li><a href="/downabit/subscribe/">Subscription</a></li>
         <li><a href="/downabit/privacy/">Privacy policy</a></li>
@@ -398,7 +402,7 @@ page('downabit/', {
     <div class="faq reveal">
 ${FAQ.map(([q, a]) => `      <details><summary>${q}</summary><div><p>${a}</p></div></details>`).join('\n')}
     </div>
-    <p class="muted" style="text-align:center;margin-top:24px">More help on the <a href="/downabit/support/">support page</a>.</p>
+    <p class="muted" style="text-align:center;margin-top:24px">Step-by-step <a href="/downabit/guides/">connection guides</a> for every place you can save to, and more help on the <a href="/downabit/support/">support page</a>.</p>
   </div>
 </section>
 
@@ -537,6 +541,8 @@ page('downabit/support/', {
   <div class="glass"><strong>Please include</strong><p class="muted">Your TV model and what you see on the screen. A photo of the screen helps.</p></div>
 </div>
 
+<div class="note">Connecting a NAS, a Windows or Mac shared folder, WebDAV, Google Drive or Dropbox? The <a href="/downabit/guides/">connection guides</a> go through each one step by step.</div>
+
 <h2>Getting started</h2>
 <div class="faq">
 ${qa('How do I sign in?', 'Open Downabit and choose "Log in with QR code". On your phone, open Telegram, go to Settings &gt; Devices &gt; Link Desktop Device and scan the code. You can also enter your phone number and the code Telegram sends you.')}
@@ -622,6 +628,9 @@ page('downabit/subscribe/', {
 <p>After you cancel, Downabit keeps working until the end of the period you already paid for. Refunds are handled by the store.</p>
 <p>Questions: ${mail}</p>`),
 })
+
+// ---- Guides: how to connect every place Downabit saves to ----------------------------------------------------------
+buildGuides({ page, doc, mail, ICON, svg })
 
 // ---- 404 (served from any path, so every link is root-relative) -------------------------------------------------------
 pages['404.html'] = layout({
