@@ -5,6 +5,7 @@ import { writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { buildGuides } from './guides.mjs'
+import { buildFiveDice } from './fivedice.mjs'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
 
@@ -69,19 +70,29 @@ const storeButtons = (extra = '') => `<div class="btn-row"${extra}>
 </div>`
 
 // ---- page frame -----------------------------------------------------------------------------------------------------
-function layout({ path, title, description, nav, sub, body, jsonLd, image = '/assets/og-image.jpg' }) {
+// Each app's own pages, shown as tabs above its documents.
+const SUBNAVS = {
+  downabit: ['Downabit pages', [
+    ['/downabit/', 'Overview', 'overview'],
+    ['/downabit/guides/', 'Guides', 'guides'],
+    ['/downabit/support/', 'Support', 'support'],
+    ['/downabit/privacy/', 'Privacy', 'privacy'],
+    ['/downabit/terms/', 'Terms', 'terms'],
+    ['/downabit/delete-data/', 'Delete data', 'delete'],
+    ['/downabit/subscribe/', 'Subscription', 'subscribe'],
+  ]],
+  fivedice: ['Five Dice pages', [
+    ['/five-dice/', 'Overview', 'overview'],
+    ['/five-dice/support/', 'Support', 'support'],
+    ['/five-dice/privacy/', 'Privacy', 'privacy'],
+  ]],
+}
+
+function layout({ path, title, description, nav, sub, app = 'downabit', body, jsonLd, image = '/assets/og-image.jpg' }) {
   const canonical = SITE.url + '/' + path
   const navItem = (href, label, key) => `<a href="${href}"${nav === key ? ' aria-current="page"' : ''}>${label}</a>`
   const subnav = sub
-    ? `<nav class="subnav" aria-label="Downabit pages">${[
-        ['/downabit/', 'Overview', 'overview'],
-        ['/downabit/guides/', 'Guides', 'guides'],
-        ['/downabit/support/', 'Support', 'support'],
-        ['/downabit/privacy/', 'Privacy', 'privacy'],
-        ['/downabit/terms/', 'Terms', 'terms'],
-        ['/downabit/delete-data/', 'Delete data', 'delete'],
-        ['/downabit/subscribe/', 'Subscription', 'subscribe'],
-      ].map(([h, l, k]) => `<a href="${h}"${sub === k ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>`
+    ? `<nav class="subnav" aria-label="${SUBNAVS[app][0]}">${SUBNAVS[app][1].map(([h, l, k]) => `<a href="${h}"${sub === k ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>`
     : ''
   const ld = jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>\n` : ''
   return `<!doctype html>
@@ -125,6 +136,7 @@ ${ld}<script src="/assets/site.js" defer></script>
       ${navItem('/', 'Home', 'home')}
       ${navItem('/apps/', 'Apps', 'apps')}
       ${navItem('/downabit/', 'Downabit', 'downabit')}
+      ${navItem('/five-dice/', 'Five Dice', 'fivedice')}
       ${navItem('/downabit/guides/', 'Guides', 'guides')}
       ${navItem('/downabit/support/', 'Support', 'support')}
     </nav>
@@ -139,10 +151,10 @@ ${body}
     <div class="cols">
       <div class="about">
         <a class="brand" href="/">${BRAND_MARK}${SITE.name}</a>
-        <p>Small, careful apps for the big screen. No ads, no tracking, written in plain words.</p>
+        <p>Small, careful apps for the big screen. No ad networks, no tracking, written in plain words.</p>
         <p>${mail}</p>
       </div>
-      <div><h4>Apps</h4><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/apps/">All apps</a></li></ul></div>
+      <div><h4>Apps</h4><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/apps/">All apps</a></li></ul></div>
       <div><h4>Downabit</h4><ul>
         <li><a href="/downabit/guides/">Connection guides</a></li>
         <li><a href="/downabit/support/">Support</a></li>
@@ -151,7 +163,11 @@ ${body}
         <li><a href="/downabit/terms/">Terms of use</a></li>
         <li><a href="/downabit/delete-data/">Delete your data</a></li>
       </ul></div>
-      <div><h4>Get the app</h4><ul>
+      <div><h4>Five Dice</h4><ul>
+        <li><a href="/five-dice/support/">Support</a></li>
+        <li><a href="/five-dice/privacy/">Privacy policy</a></li>
+      </ul></div>
+      <div><h4>Get Downabit</h4><ul>
         <li><a href="${DOWNABIT.play}" rel="noopener">Google Play</a></li>
         <li><a href="${DOWNABIT.amazon}" rel="noopener">Amazon Appstore</a></li>
       </ul></div>
@@ -183,6 +199,15 @@ const downabitCard = `
   <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
 </a>`
 
+const fiveDiceCard = `
+<a class="glass app-card reveal" href="/five-dice/">
+  <img src="/assets/fivedice-icon-256.png" alt="" width="64" height="64">
+  <h3>Five Dice</h3>
+  <p>The classic dice game, you against the computer, played with the remote. Accessible for blind and low-vision players.</p>
+  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
+  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
+</a>`
+
 page('', {
   title: 'Shmerling Apps | Apps for the big screen',
   description: 'Small, careful apps for Android TV, Google TV and Fire TV. Home of Downabit: your family videos from Telegram to the TV.',
@@ -193,7 +218,7 @@ page('', {
   <div class="container">
     <span class="eyebrow">Apps for the big screen</span>
     <h1 class="gradient-text">Made for the remote.<br>Respectful of your files.</h1>
-    <p class="lead">Shmerling Apps builds small, careful apps for Android TV, Google TV and Fire TV. No ads, no tracking, and every screen says what will happen before it happens.</p>
+    <p class="lead">Shmerling Apps builds small, careful apps and games for Android TV, Google TV and Fire TV. No ad networks, no tracking, and every screen says what will happen before it happens.</p>
     <div class="btn-row"><a class="btn btn-play" href="/apps/">See our apps ${ICON.arrow}</a><a class="btn btn-glass" href="mailto:${SITE.email}">${ICON.mail} Contact us</a></div>
   </div>
 </section>
@@ -201,7 +226,7 @@ page('', {
 <section class="section">
   <div class="container">
     <div class="section-head reveal"><h2>Our apps</h2><p>Each one does one job well, on the biggest screen in the house.</p></div>
-    <div class="apps-grid">${downabitCard}</div>
+    <div class="apps-grid">${downabitCard}${fiveDiceCard}</div>
   </div>
 </section>
 
@@ -209,7 +234,7 @@ page('', {
   <div class="container">
     <div class="section-head reveal"><h2>How we build</h2></div>
     <div class="features">
-      <div class="glass feature reveal"><div class="ico">${ICON.shield}</div><h3>Your files stay yours</h3><p>No ads, no tracking, no analytics. Our apps do not send your data to us, because we do not want it.</p></div>
+      <div class="glass feature reveal"><div class="ico">${ICON.shield}</div><h3>Your data stays yours</h3><p>No ad networks, no tracking, no analytics. Our apps do not send your data to us, because we do not want it.</p></div>
       <div class="glass feature reveal"><div class="ico">${ICON.remote}</div><h3>Made for the remote</h3><p>Short lists, big buttons, codes you scan with your phone and very little typing.</p></div>
       <div class="glass feature reveal"><div class="ico">${ICON.text}</div><h3>Plain language</h3><p>Clear words instead of error codes, in 30 languages, with right-to-left support.</p></div>
     </div>
@@ -232,7 +257,7 @@ page('apps/', {
 </section>
 <section class="section" style="padding-top:40px">
   <div class="container">
-    <div class="apps-grid">${downabitCard}</div>
+    <div class="apps-grid">${downabitCard}${fiveDiceCard}</div>
   </div>
 </section>`,
 })
@@ -647,6 +672,8 @@ pages['404.html'] = layout({
   </div>
 </section>`,
 }).replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n<meta name="viewport"')
+
+buildFiveDice({ page, doc, mail, ICON, SITE, ORG })
 
 pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
