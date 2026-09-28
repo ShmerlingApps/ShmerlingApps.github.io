@@ -341,3 +341,7 @@ html.a11y-focus :focus-visible { outline: 4px solid #ffeb3b !important; outline-
 
 /* Room under the footer so the accessibility button never covers its last lines. */
 .footer .bottom { padding-bottom: 96px; }
+
+/* An app card with its own buttons (Downabit: Learn more + Amazon Appstore) is a box, not one big link. */
+.app-card.has-actions:hover { transform: none; }
+.card-actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }

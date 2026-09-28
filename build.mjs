@@ -202,14 +202,19 @@ function page(path, opts) {
 const ORG = { '@type': 'Organization', '@id': SITE.url + '/#org', name: SITE.name, url: SITE.url + '/', email: SITE.email, logo: SITE.url + '/assets/apple-touch-icon.png' }
 
 // ---- Home -------------------------------------------------------------------------------------------------------------
+// Downabit is live on Amazon, so its card carries the store button too: a box with two links, not one big link
+// (a link cannot hold another link).
 const downabitCard = `
-<a class="glass app-card reveal" href="/downabit/">
+<div class="glass app-card has-actions reveal">
   <img src="/assets/downabit-icon-256.png" alt="" width="64" height="64">
   <h3>Downabit</h3>
   <p>Your family's photos and videos, from your private Telegram channel to the TV, a USB drive, your NAS or the cloud.</p>
   <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
-  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
-</a>`
+  <div class="card-actions">
+    <a class="btn btn-glass" href="/downabit/">Learn more<span class="sr-only"> about Downabit</span> ${ICON.arrow}</a>
+    <a class="btn btn-amazon" href="${DOWNABIT.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>
+  </div>
+</div>`
 
 const fiveDiceCard = `
 <a class="glass app-card reveal" href="/five-dice/">
