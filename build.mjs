@@ -21,8 +21,8 @@ const SITE = {
 
 const DOWNABIT = {
   play: 'https://play.google.com/store/apps/details?id=app.shmerling.downabit',
-  // Replace with the app's own Amazon page once it is live (it has an ASIN only after publishing).
-  amazon: 'https://www.amazon.com/s?k=Downabit&i=mobile-apps',
+  // The app's own Amazon page (ASIN B0HKNJKTY5). A search for the name finds fishing baits first.
+  amazon: 'https://www.amazon.com/dp/B0HKNJKTY5',
   playSubscriptions: 'https://play.google.com/store/account/subscriptions',
   amazonSubscriptions: 'https://www.amazon.com/gp/mas/your-account/myapps/yoursubscriptions',
 }
