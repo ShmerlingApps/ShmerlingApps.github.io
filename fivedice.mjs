@@ -9,7 +9,7 @@ export const FIVE_DICE = {
   playGamesData: 'https://support.google.com/googleplay/answer/9054946',
 }
 
-export function buildFiveDice({ page, doc, mail, ICON, SITE, ORG }) {
+export function buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more = '' }) {
   const shot = (key, alt, lazy = true) =>
     `<img src="/five-dice/media/${key}-1600.webp" srcset="/five-dice/media/${key}-960.webp 960w, /five-dice/media/${key}-1600.webp 1600w" sizes="(max-width: 960px) 88vw, 860px" alt="${alt}" width="1600" height="900"${lazy ? ' loading="lazy"' : ''} decoding="async">`
   const stores = FIVE_DICE.play || FIVE_DICE.amazon
@@ -89,7 +89,8 @@ export function buildFiveDice({ page, doc, mail, ICON, SITE, ORG }) {
     </dl>
     <p class="muted" style="margin-top:24px;font-size:13px;text-align:center">Google TV and Google Play are trademarks of Google LLC. Amazon, Fire TV and the Amazon Appstore are trademarks of Amazon.com, Inc. Five Dice is not affiliated with, endorsed by or sponsored by any of them, or by the makers of any other dice game.</p>
   </div>
-</section>`,
+</section>
+${more}`,
   })
 
   page('five-dice/privacy/', {

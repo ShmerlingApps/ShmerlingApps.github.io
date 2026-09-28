@@ -229,6 +229,15 @@ const paintMazeCard = `
   <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
 </a>`
 
+// The other apps' cards at the bottom of each app's page, as the games show each other between rounds.
+const moreApps = (...cards) => `
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">More from us</span><h2>More from Shmerling Apps</h2></div>
+    <div class="apps-grid">${cards.join('')}</div>
+  </div>
+</section>`
+
 page('', {
   title: 'Shmerling Apps | Apps for the big screen',
   description: 'Small, careful apps for Android TV, Google TV and Fire TV. Home of Downabit: your family videos from Telegram to the TV.',
@@ -463,7 +472,8 @@ ${FAQ.map(([q, a]) => `      <details><summary>${q}</summary><div><p>${a}</p></d
     </div>
     <p class="muted" style="margin-top:32px;font-size:13px;text-align:center">Telegram is a trademark of Telegram FZ-LLC. Google Drive, Google TV and Google Play are trademarks of Google LLC. Dropbox is a trademark of Dropbox, Inc. Amazon, Fire TV and the Amazon Appstore are trademarks of Amazon.com, Inc. Downabit is not affiliated with, endorsed by or sponsored by any of them. The family pictures are illustrations made for this site.</p>
   </div>
-</section>`,
+</section>
+${moreApps(fiveDiceCard, paintMazeCard)}`,
 })
 
 // ---- documents (legal and help pages share one frame) -----------------------------------------------------------------
@@ -696,9 +706,9 @@ pages['404.html'] = layout({
 </section>`,
 }).replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n<meta name="viewport"')
 
-buildFiveDice({ page, doc, mail, ICON, SITE, ORG })
+buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, paintMazeCard) })
 buildAccessibility({ page, doc, mail, SITE })
-buildPaintMaze({ page, doc, mail, ICON, SITE, ORG })
+buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, fiveDiceCard) })
 
 pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
