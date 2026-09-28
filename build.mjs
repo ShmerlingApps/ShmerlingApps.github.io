@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url'
 import { buildGuides } from './guides.mjs'
 import { buildFiveDice } from './fivedice.mjs'
 import { buildAccessibility } from './accessibility.mjs'
+import { buildPaintMaze } from './paintmaze.mjs'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
 
@@ -82,6 +83,11 @@ const SUBNAVS = {
     ['/downabit/delete-data/', 'Delete data', 'delete'],
     ['/downabit/subscribe/', 'Subscription', 'subscribe'],
   ]],
+  paintmaze: ['Paint Maze pages', [
+    ['/paint-maze/', 'Overview', 'overview'],
+    ['/paint-maze/support/', 'Support', 'support'],
+    ['/paint-maze/privacy/', 'Privacy', 'privacy'],
+  ]],
   fivedice: ['Five Dice pages', [
     ['/five-dice/', 'Overview', 'overview'],
     ['/five-dice/support/', 'Support', 'support'],
@@ -140,6 +146,7 @@ ${ld}<script src="/assets/site.js" defer></script>
       ${navItem('/apps/', 'Apps', 'apps')}
       ${navItem('/downabit/', 'Downabit', 'downabit')}
       ${navItem('/five-dice/', 'Five Dice', 'fivedice')}
+      ${navItem('/paint-maze/', 'Paint Maze', 'paintmaze')}
       ${navItem('/downabit/guides/', 'Guides', 'guides')}
       ${navItem('/downabit/support/', 'Support', 'support')}
     </nav>
@@ -157,7 +164,7 @@ ${body}
         <p>Small, careful apps for the big screen. No ad networks, no tracking, written in plain words.</p>
         <p>${mail}</p>
       </div>
-      <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/apps/">All apps</a></li></ul></div>
+      <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/paint-maze/">Paint Maze</a></li><li><a href="/apps/">All apps</a></li></ul></div>
       <div><h2>Downabit</h2><ul>
         <li><a href="/downabit/guides/">Connection guides</a></li>
         <li><a href="/downabit/support/">Support</a></li>
@@ -166,9 +173,11 @@ ${body}
         <li><a href="/downabit/terms/">Terms of use</a></li>
         <li><a href="/downabit/delete-data/">Delete your data</a></li>
       </ul></div>
-      <div><h2>Five Dice</h2><ul>
-        <li><a href="/five-dice/support/">Support</a></li>
-        <li><a href="/five-dice/privacy/">Privacy policy</a></li>
+      <div><h2>Games</h2><ul>
+        <li><a href="/five-dice/support/">Five Dice support</a></li>
+        <li><a href="/five-dice/privacy/">Five Dice privacy</a></li>
+        <li><a href="/paint-maze/support/">Paint Maze support</a></li>
+        <li><a href="/paint-maze/privacy/">Paint Maze privacy</a></li>
       </ul></div>
       <div><h2>Get Downabit</h2><ul>
         <li><a href="${DOWNABIT.play}" rel="noopener">Google Play</a></li>
@@ -211,6 +220,15 @@ const fiveDiceCard = `
   <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
 </a>`
 
+const paintMazeCard = `
+<a class="glass app-card reveal" href="/paint-maze/">
+  <img src="/assets/paintmaze-icon-256.png" alt="" width="64" height="64">
+  <h3>Paint Maze</h3>
+  <p>Roll the ball with the remote and paint every square of the maze. 1,200 levels, and it can be played by ear.</p>
+  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
+  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
+</a>`
+
 page('', {
   title: 'Shmerling Apps | Apps for the big screen',
   description: 'Small, careful apps for Android TV, Google TV and Fire TV. Home of Downabit: your family videos from Telegram to the TV.',
@@ -229,7 +247,7 @@ page('', {
 <section class="section">
   <div class="container">
     <div class="section-head reveal"><h2>Our apps</h2><p>Each one does one job well, on the biggest screen in the house.</p></div>
-    <div class="apps-grid">${downabitCard}${fiveDiceCard}</div>
+    <div class="apps-grid">${downabitCard}${fiveDiceCard}${paintMazeCard}</div>
   </div>
 </section>
 
@@ -261,7 +279,7 @@ page('apps/', {
 <section class="section" style="padding-top:40px">
   <div class="container">
     <h2 class="sr-only">All apps</h2>
-    <div class="apps-grid">${downabitCard}${fiveDiceCard}</div>
+    <div class="apps-grid">${downabitCard}${fiveDiceCard}${paintMazeCard}</div>
   </div>
 </section>`,
 })
@@ -680,6 +698,7 @@ pages['404.html'] = layout({
 
 buildFiveDice({ page, doc, mail, ICON, SITE, ORG })
 buildAccessibility({ page, doc, mail, SITE })
+buildPaintMaze({ page, doc, mail, ICON, SITE, ORG })
 
 pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
