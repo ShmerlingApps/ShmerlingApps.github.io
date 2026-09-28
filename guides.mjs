@@ -62,6 +62,7 @@ ${footer}`),
 <section class="section" style="padding-top:48px">
   <div class="container">
     <div class="features">
+      <h2 class="sr-only">The guides</h2>
 ${GUIDES.map(([slug, icon, title, text]) => `      <a class="glass feature guide-card reveal" href="/downabit/guides/${slug}/"><div class="ico">${icon}</div><h3>${title}</h3><p>${text}</p><span class="more">Open the guide ${ICON.arrow}</span></a>`).join('\n')}
     </div>
     <div class="glass prose-block reveal" style="margin-top:32px">

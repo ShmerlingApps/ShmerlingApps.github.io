@@ -26,8 +26,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
 <link rel="stylesheet" href="/assets/site.css">
+<script>try{var a=JSON.parse(localStorage.getItem('a11y')||'{}'),h=document.documentElement,z=[1,1.15,1.3,1.5][a.zoom||0]||1;['contrast','links','readable','still','focus'].forEach(function(k){if(a[k])h.classList.add('a11y-'+k)});if(z!==1){h.classList.add('a11y-zoom');h.style.setProperty('--a11y-zoom',z)}}catch(e){}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://shmerling.app/#org","name":"Shmerling Apps","url":"https://shmerling.app/","email":"support@shmerling.app","logo":"https://shmerling.app/assets/apple-touch-icon.png"},{"@type":"SoftwareApplication","name":"Downabit","url":"https://shmerling.app/downabit/","image":"https://shmerling.app/assets/downabit-icon-256.png","description":"Turns a private Telegram channel into a drop folder for your TV. Saves files to the TV, a USB drive, a network share, WebDAV, Google Drive or Dropbox, and plays them.","applicationCategory":"MultimediaApplication","operatingSystem":"Android TV, Google TV, Fire OS","publisher":{"@id":"https://shmerling.app/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Free download; monthly or yearly subscription with a 7-day free trial"},"installUrl":"https://play.google.com/store/apps/details?id=app.shmerling.downabit","privacyPolicy":"https://shmerling.app/downabit/privacy/"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What do I need to use Downabit?","acceptedAnswer":{"@type":"Answer","text":"A Telegram account, and a TV with Android TV or Google TV (Android 7.0 or newer) or an Amazon Fire TV with Fire OS 5 or newer. Downabit creates a private channel in your Telegram account; you send files there from your phone."}},{"@type":"Question","name":"Where can I save files?","acceptedAnswer":{"@type":"Answer","text":"On the TV itself, a USB drive, a Windows share or NAS on your home network (SMB), a WebDAV server, Google Drive or Dropbox. You choose for every file."}},{"@type":"Question","name":"Does Downabit see my chats or my files?","acceptedAnswer":{"@type":"Answer","text":"No. Downabit only reads the private channel it creates for you, and files move straight from Telegram to the place you choose. Nothing is sent to us: there are no ads, no analytics and no tracking."}},{"@type":"Question","name":"How much does it cost?","acceptedAnswer":{"@type":"Answer","text":"Downabit is free to download. Using it needs a monthly or yearly subscription, and every plan starts with a 7-day free trial. Prices are shown in the app in your currency. Cancel any time in Google Play or the Amazon Appstore."}},{"@type":"Question","name":"Which Fire TV devices are supported?","acceptedAnswer":{"@type":"Answer","text":"Fire TV devices with Fire OS 5 or newer. Fire TV devices running Vega OS, such as the Fire TV Stick 4K Select and the Fire TV Stick HD (2nd generation), cannot run Android apps."}},{"@type":"Question","name":"My TV has little storage. Can I still save a film?","acceptedAnswer":{"@type":"Answer","text":"Yes. Large files stream straight to their destination, so a stick with little free space can pass a film on to your NAS or cloud account without keeping it."}}]}]}</script>
 <script src="/assets/site.js" defer></script>
+<script src="/assets/a11y.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -114,8 +116,8 @@
 <section class="section" id="screens">
   <div class="container">
     <div class="section-head reveal"><span class="eyebrow">Screens</span><h2>See it on the TV</h2><p>Real screens from Downabit on Android TV.</p></div>
-    <div class="carousel reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Downabit screens" tabindex="0">
-      <div class="carousel-track">
+    <div class="carousel reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Downabit screens">
+      <div class="carousel-track" tabindex="0" aria-label="Screens: left and right arrow keys move between them">
       <figure class="slide" role="group" aria-roledescription="slide" aria-label="1 of 4: Cloud and network">
         <div class="shot"><img src="/downabit/media/screens/cloud-1600.webp" srcset="/downabit/media/screens/cloud-960.webp 960w, /downabit/media/screens/cloud-1600.webp 1600w" sizes="(max-width: 960px) 88vw, 860px" alt="Cloud and network settings listing Google Drive, a network share and Dropbox" width="1600" height="900" decoding="async"></div>
         <figcaption><strong>Cloud and network</strong><span>Connect Google Drive, Dropbox, WebDAV or a network share by scanning a code with your phone.</span></figcaption>
@@ -137,6 +139,7 @@
         <button class="carousel-btn" type="button" data-prev aria-label="Previous screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
         <div class="carousel-dots"></div>
         <button class="carousel-btn" type="button" data-next aria-label="Next screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+        <button class="carousel-btn carousel-pause" type="button" data-pause>Pause</button>
       </div>
     </div>
   </div>
@@ -214,8 +217,8 @@
         <p>Small, careful apps for the big screen. No ad networks, no tracking, written in plain words.</p>
         <p><a href="mailto:support@shmerling.app">support@shmerling.app</a></p>
       </div>
-      <div><h4>Apps</h4><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/apps/">All apps</a></li></ul></div>
-      <div><h4>Downabit</h4><ul>
+      <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/apps/">All apps</a></li></ul></div>
+      <div><h2>Downabit</h2><ul>
         <li><a href="/downabit/guides/">Connection guides</a></li>
         <li><a href="/downabit/support/">Support</a></li>
         <li><a href="/downabit/subscribe/">Subscription</a></li>
@@ -223,16 +226,16 @@
         <li><a href="/downabit/terms/">Terms of use</a></li>
         <li><a href="/downabit/delete-data/">Delete your data</a></li>
       </ul></div>
-      <div><h4>Five Dice</h4><ul>
+      <div><h2>Five Dice</h2><ul>
         <li><a href="/five-dice/support/">Support</a></li>
         <li><a href="/five-dice/privacy/">Privacy policy</a></li>
       </ul></div>
-      <div><h4>Get Downabit</h4><ul>
+      <div><h2>Get Downabit</h2><ul>
         <li><a href="https://play.google.com/store/apps/details?id=app.shmerling.downabit" rel="noopener">Google Play</a></li>
         <li><a href="https://www.amazon.com/s?k=Downabit&i=mobile-apps" rel="noopener">Amazon Appstore</a></li>
       </ul></div>
     </div>
-    <div class="bottom"><span>&copy; 2026 Shmerling Apps. All rights reserved.</span><span><a href="/downabit/privacy/">Privacy</a> &middot; <a href="/downabit/terms/">Terms</a></span></div>
+    <div class="bottom"><span>&copy; 2026 Shmerling Apps. All rights reserved.</span><span><a href="/accessibility/">Accessibility statement &middot; <span lang="he">הצהרת נגישות</span></a> &middot; <a href="/downabit/privacy/">Privacy</a> &middot; <a href="/downabit/terms/">Terms</a></span></div>
   </div>
 </footer>
 </body>

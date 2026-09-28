@@ -6,6 +6,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { buildGuides } from './guides.mjs'
 import { buildFiveDice } from './fivedice.mjs'
+import { buildAccessibility } from './accessibility.mjs'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
 
@@ -123,7 +124,9 @@ function layout({ path, title, description, nav, sub, app = 'downabit', body, js
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
 <link rel="stylesheet" href="/assets/site.css">
+<script>try{var a=JSON.parse(localStorage.getItem('a11y')||'{}'),h=document.documentElement,z=[1,1.15,1.3,1.5][a.zoom||0]||1;['contrast','links','readable','still','focus'].forEach(function(k){if(a[k])h.classList.add('a11y-'+k)});if(z!==1){h.classList.add('a11y-zoom');h.style.setProperty('--a11y-zoom',z)}}catch(e){}</script>
 ${ld}<script src="/assets/site.js" defer></script>
+<script src="/assets/a11y.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -154,8 +157,8 @@ ${body}
         <p>Small, careful apps for the big screen. No ad networks, no tracking, written in plain words.</p>
         <p>${mail}</p>
       </div>
-      <div><h4>Apps</h4><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/apps/">All apps</a></li></ul></div>
-      <div><h4>Downabit</h4><ul>
+      <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/apps/">All apps</a></li></ul></div>
+      <div><h2>Downabit</h2><ul>
         <li><a href="/downabit/guides/">Connection guides</a></li>
         <li><a href="/downabit/support/">Support</a></li>
         <li><a href="/downabit/subscribe/">Subscription</a></li>
@@ -163,16 +166,16 @@ ${body}
         <li><a href="/downabit/terms/">Terms of use</a></li>
         <li><a href="/downabit/delete-data/">Delete your data</a></li>
       </ul></div>
-      <div><h4>Five Dice</h4><ul>
+      <div><h2>Five Dice</h2><ul>
         <li><a href="/five-dice/support/">Support</a></li>
         <li><a href="/five-dice/privacy/">Privacy policy</a></li>
       </ul></div>
-      <div><h4>Get Downabit</h4><ul>
+      <div><h2>Get Downabit</h2><ul>
         <li><a href="${DOWNABIT.play}" rel="noopener">Google Play</a></li>
         <li><a href="${DOWNABIT.amazon}" rel="noopener">Amazon Appstore</a></li>
       </ul></div>
     </div>
-    <div class="bottom"><span>&copy; ${SITE.year} ${SITE.name}. All rights reserved.</span><span><a href="/downabit/privacy/">Privacy</a> &middot; <a href="/downabit/terms/">Terms</a></span></div>
+    <div class="bottom"><span>&copy; ${SITE.year} ${SITE.name}. All rights reserved.</span><span><a href="/accessibility/">Accessibility statement &middot; <span lang="he">הצהרת נגישות</span></a> &middot; <a href="/downabit/privacy/">Privacy</a> &middot; <a href="/downabit/terms/">Terms</a></span></div>
   </div>
 </footer>
 </body>
@@ -257,6 +260,7 @@ page('apps/', {
 </section>
 <section class="section" style="padding-top:40px">
   <div class="container">
+    <h2 class="sr-only">All apps</h2>
     <div class="apps-grid">${downabitCard}${fiveDiceCard}</div>
   </div>
 </section>`,
@@ -374,13 +378,14 @@ page('downabit/', {
 <section class="section" id="screens">
   <div class="container">
     <div class="section-head reveal"><span class="eyebrow">Screens</span><h2>See it on the TV</h2><p>Real screens from Downabit on Android TV.</p></div>
-    <div class="carousel reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Downabit screens" tabindex="0">
-      <div class="carousel-track">${slides}
+    <div class="carousel reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Downabit screens">
+      <div class="carousel-track" tabindex="0" aria-label="Screens: left and right arrow keys move between them">${slides}
       </div>
       <div class="carousel-controls">
         <button class="carousel-btn" type="button" data-prev aria-label="Previous screen">${ICON.prev}</button>
         <div class="carousel-dots"></div>
         <button class="carousel-btn" type="button" data-next aria-label="Next screen">${ICON.next}</button>
+        <button class="carousel-btn carousel-pause" type="button" data-pause>Pause</button>
       </div>
     </div>
   </div>
@@ -674,6 +679,7 @@ pages['404.html'] = layout({
 }).replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n<meta name="viewport"')
 
 buildFiveDice({ page, doc, mail, ICON, SITE, ORG })
+buildAccessibility({ page, doc, mail, SITE })
 
 pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

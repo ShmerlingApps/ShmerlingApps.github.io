@@ -20,6 +20,7 @@
     var dotsBox = root.querySelector('.carousel-dots');
     var prev = root.querySelector('[data-prev]');
     var next = root.querySelector('[data-next]');
+    var pauseBtn = root.querySelector('[data-pause]');
     if (!track || slides.length === 0) return;
     var current = 0;
     var dots = slides.map(function (slide, i) {
@@ -55,12 +56,26 @@
     }
     mark(0);
     var timer = null;
-    var stopped = false;
-    function pause() { stopped = true; if (timer) { clearInterval(timer); timer = null; } }
-    function play() { if (reduced || stopped || timer) return; timer = setInterval(function () { go(current + 1); }, 5500); }
+    var html = document.documentElement;
+    var still = function () { return reduced || html.classList.contains('a11y-still'); };
+    // Stopped for good by the visitor (Pause, a click, a swipe, keyboard focus) or by "Stop animations" / reduced motion.
+    var stopped = still();
+    function showState() {
+      if (!pauseBtn) return;
+      pauseBtn.textContent = stopped ? 'Play' : 'Pause';
+      pauseBtn.setAttribute('aria-label', stopped ? 'Play the screens automatically' : 'Pause the screens');
+    }
+    function pause() { stopped = true; if (timer) { clearInterval(timer); timer = null; } showState(); }
+    function play() { if (stopped || timer) return; timer = setInterval(function () { go(current + 1); }, 5500); }
+    pauseBtn && pauseBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (stopped) { stopped = false; showState(); play(); } else { pause(); }
+    });
+    document.addEventListener('a11ychange', function () { if (still()) pause(); });
+    showState();
     root.addEventListener('mouseenter', function () { if (timer) { clearInterval(timer); timer = null; } });
     root.addEventListener('mouseleave', play);
-    root.addEventListener('focusin', pause);
+    root.addEventListener('focusin', function (e) { if (e.target !== pauseBtn) pause(); });
     track.addEventListener('touchstart', pause, { passive: true });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
