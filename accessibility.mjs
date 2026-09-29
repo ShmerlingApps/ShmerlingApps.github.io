@@ -44,7 +44,7 @@ export function buildAccessibility({ page, doc, mail, SITE }) {
 <p>If something on the site is hard to use, please tell us and we will fix it.</p>
 
 <h2>Our apps</h2>
-<p>Our apps are made for the TV remote. Five Dice and Paint Maze also work with the TV's screen reader (TalkBack) and can read themselves aloud; Five Dice has high contrast and numbers on the dice, Paint Maze has high contrast and marks on the squares still to paint.</p>
+<p>Our apps are made for the TV remote. Our games (Five Dice, Paint Maze, Solitaire and Backgammon) also work with the TV's screen reader (TalkBack), can read themselves aloud and have high contrast; Five Dice adds numbers on the dice, Paint Maze marks on the squares still to paint, Solitaire a four-colour deck and big cards, Backgammon numbers on the points and bigger checkers.</p>
 
 <h2>Accessibility contact</h2>
 <p>If you meet an accessibility problem on this website or in our apps, or need information in another format, write to ${mail}. Please describe the problem, the page, and the browser or device you use.</p>
@@ -83,7 +83,7 @@ export function buildAccessibility({ page, doc, mail, SITE }) {
 <p>אם משהו באתר קשה לשימוש, ספרו לנו ונתקן.</p>
 
 <h3>האפליקציות שלנו</h3>
-<p>האפליקציות שלנו מיועדות לשלט של הטלוויזיה. Five Dice ו-Paint Maze עובדים גם עם קורא המסך של הטלוויזיה (TalkBack) ויכולים להקריא את עצמם בקול; ב-Five Dice יש ניגודיות גבוהה ומספרים על הקוביות, וב-Paint Maze ניגודיות גבוהה וסימון המשבצות שעוד לא נצבעו.</p>
+<p>האפליקציות שלנו מיועדות לשלט של הטלוויזיה. המשחקים שלנו (Five Dice,&rlm; Paint Maze,&rlm; Solitaire ו-Backgammon) עובדים גם עם קורא המסך של הטלוויזיה (TalkBack), יכולים להקריא את עצמם בקול ויש בהם ניגודיות גבוהה; ב-Five Dice יש גם מספרים על הקוביות, ב-Paint Maze סימון המשבצות שעוד לא נצבעו, ב-Solitaire חפיסה בארבעה צבעים וקלפים גדולים, וב-Backgammon מספרים על המשולשים של הלוח ואבנים גדולות יותר.</p>
 
 <h3>פנייה בנושא נגישות</h3>
 <p>נתקלתם בבעיית נגישות באתר או באפליקציות שלנו, או שאתם צריכים מידע בפורמט אחר? כתבו לנו: <span dir="ltr">${mail}</span>. נא לתאר את הבעיה, את הדף ואת הדפדפן או המכשיר.</p>

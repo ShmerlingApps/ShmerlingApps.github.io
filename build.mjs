@@ -9,6 +9,8 @@ import { buildFiveDice } from './fivedice.mjs'
 import { buildAccessibility } from './accessibility.mjs'
 import { buildPaintMaze } from './paintmaze.mjs'
 import { buildDownabitPlayer } from './downabitplayer.mjs'
+import { buildSolitaire } from './solitaire.mjs'
+import { buildBackgammon } from './backgammon.mjs'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
 
@@ -99,6 +101,16 @@ const SUBNAVS = {
     ['/five-dice/support/', 'Support', 'support'],
     ['/five-dice/privacy/', 'Privacy', 'privacy'],
   ]],
+  solitaire: ['Solitaire pages', [
+    ['/solitaire/', 'Overview', 'overview'],
+    ['/solitaire/support/', 'Support', 'support'],
+    ['/solitaire/privacy/', 'Privacy', 'privacy'],
+  ]],
+  backgammon: ['Backgammon pages', [
+    ['/backgammon/', 'Overview', 'overview'],
+    ['/backgammon/support/', 'Support', 'support'],
+    ['/backgammon/privacy/', 'Privacy', 'privacy'],
+  ]],
 }
 
 function layout({ path, title, description, nav, sub, app = 'downabit', body, jsonLd, image = '/assets/og-image.jpg' }) {
@@ -154,6 +166,8 @@ ${ld}<script src="/assets/site.js" defer></script>
       ${navItem('/downabit-player/', 'Downabit Player', 'downabitplayer')}
       ${navItem('/five-dice/', 'Five Dice', 'fivedice')}
       ${navItem('/paint-maze/', 'Paint Maze', 'paintmaze')}
+      ${navItem('/solitaire/', 'Solitaire', 'solitaire')}
+      ${navItem('/backgammon/', 'Backgammon', 'backgammon')}
       ${navItem('/downabit/guides/', 'Guides', 'guides')}
       ${navItem('/downabit/support/', 'Support', 'support')}
     </nav>
@@ -171,7 +185,7 @@ ${body}
         <p>Small, careful apps for the big screen. No ad networks, no tracking, written in plain words.</p>
         <p>${mail}</p>
       </div>
-      <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/downabit-player/">Downabit Player</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/paint-maze/">Paint Maze</a></li><li><a href="/apps/">All apps</a></li></ul></div>
+      <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/downabit-player/">Downabit Player</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/paint-maze/">Paint Maze</a></li><li><a href="/solitaire/">Solitaire</a></li><li><a href="/backgammon/">Backgammon</a></li><li><a href="/apps/">All apps</a></li></ul></div>
       <div><h2>Downabit</h2><ul>
         <li><a href="/downabit/guides/">Connection guides</a></li>
         <li><a href="/downabit/support/">Support</a></li>
@@ -190,6 +204,10 @@ ${body}
         <li><a href="/five-dice/privacy/">Five Dice privacy</a></li>
         <li><a href="/paint-maze/support/">Paint Maze support</a></li>
         <li><a href="/paint-maze/privacy/">Paint Maze privacy</a></li>
+        <li><a href="/solitaire/support/">Solitaire support</a></li>
+        <li><a href="/solitaire/privacy/">Solitaire privacy</a></li>
+        <li><a href="/backgammon/support/">Backgammon support</a></li>
+        <li><a href="/backgammon/privacy/">Backgammon privacy</a></li>
       </ul></div>
       <div><h2>Get Downabit</h2><ul>
         <li><a href="${DOWNABIT.play}" rel="noopener">Google Play</a></li>
@@ -255,6 +273,24 @@ const paintMazeCard = `
   <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
 </a>`
 
+const solitaireCard = `
+<a class="glass app-card reveal" href="/solitaire/">
+  <img src="/assets/solitaire-icon-256.png" alt="" width="64" height="64">
+  <h3>Solitaire</h3>
+  <p>Classic Klondike patience, Draw 1 or Draw 3, played with the remote. Accessible for blind and low-vision players.</p>
+  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
+  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
+</a>`
+
+const backgammonCard = `
+<a class="glass app-card reveal" href="/backgammon/">
+  <img src="/assets/backgammon-icon-256.png" alt="" width="64" height="64">
+  <h3>Backgammon</h3>
+  <p>The classic board game against the computer at three levels, played with the remote. It can be followed by ear.</p>
+  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
+  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
+</a>`
+
 // The other apps' cards at the bottom of each app's page, as the games show each other between rounds.
 const moreApps = (...cards) => `
 <section class="section">
@@ -282,7 +318,7 @@ page('', {
 <section class="section">
   <div class="container">
     <div class="section-head reveal"><h2>Our apps</h2><p>Each one does one job well, on the biggest screen in the house.</p></div>
-    <div class="apps-grid">${downabitCard}${downabitPlayerCard}${fiveDiceCard}${paintMazeCard}</div>
+    <div class="apps-grid">${downabitCard}${downabitPlayerCard}${fiveDiceCard}${paintMazeCard}${solitaireCard}${backgammonCard}</div>
   </div>
 </section>
 
@@ -314,7 +350,7 @@ page('apps/', {
 <section class="section" style="padding-top:40px">
   <div class="container">
     <h2 class="sr-only">All apps</h2>
-    <div class="apps-grid">${downabitCard}${downabitPlayerCard}${fiveDiceCard}${paintMazeCard}</div>
+    <div class="apps-grid">${downabitCard}${downabitPlayerCard}${fiveDiceCard}${paintMazeCard}${solitaireCard}${backgammonCard}</div>
   </div>
 </section>`,
 })
@@ -499,7 +535,7 @@ ${FAQ.map(([q, a]) => `      <details><summary>${q}</summary><div><p>${a}</p></d
     <p class="muted" style="margin-top:32px;font-size:13px;text-align:center">Telegram is a trademark of Telegram FZ-LLC. Google Drive, Google TV and Google Play are trademarks of Google LLC. Dropbox is a trademark of Dropbox, Inc. Amazon, Fire TV and the Amazon Appstore are trademarks of Amazon.com, Inc. Downabit is not affiliated with, endorsed by or sponsored by any of them. The family pictures are illustrations made for this site.</p>
   </div>
 </section>
-${moreApps(downabitPlayerCard, fiveDiceCard, paintMazeCard)}`,
+${moreApps(downabitPlayerCard, fiveDiceCard, paintMazeCard, solitaireCard, backgammonCard)}`,
 })
 
 // ---- documents (legal and help pages share one frame) -----------------------------------------------------------------
@@ -732,10 +768,12 @@ pages['404.html'] = layout({
 </section>`,
 }).replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n<meta name="viewport"')
 
-buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, paintMazeCard) })
+buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, paintMazeCard, solitaireCard, backgammonCard) })
 buildAccessibility({ page, doc, mail, SITE })
-buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard) })
-buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, more: moreApps(downabitCard, fiveDiceCard, paintMazeCard) })
+buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard, solitaireCard, backgammonCard) })
+buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, more: moreApps(downabitCard, fiveDiceCard, paintMazeCard, solitaireCard, backgammonCard) })
+buildSolitaire({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard, paintMazeCard, backgammonCard) })
+buildBackgammon({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard, paintMazeCard, solitaireCard) })
 
 pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
