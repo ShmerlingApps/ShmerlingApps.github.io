@@ -8,6 +8,7 @@ import { buildGuides } from './guides.mjs'
 import { buildFiveDice } from './fivedice.mjs'
 import { buildAccessibility } from './accessibility.mjs'
 import { buildPaintMaze } from './paintmaze.mjs'
+import { buildDownabitPlayer } from './downabitplayer.mjs'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
 
@@ -83,6 +84,11 @@ const SUBNAVS = {
     ['/downabit/delete-data/', 'Delete data', 'delete'],
     ['/downabit/subscribe/', 'Subscription', 'subscribe'],
   ]],
+  downabitplayer: ['Downabit Player pages', [
+    ['/downabit-player/', 'Overview', 'overview'],
+    ['/downabit-player/support/', 'Support', 'support'],
+    ['/downabit-player/privacy/', 'Privacy', 'privacy'],
+  ]],
   paintmaze: ['Paint Maze pages', [
     ['/paint-maze/', 'Overview', 'overview'],
     ['/paint-maze/support/', 'Support', 'support'],
@@ -145,6 +151,7 @@ ${ld}<script src="/assets/site.js" defer></script>
       ${navItem('/', 'Home', 'home')}
       ${navItem('/apps/', 'Apps', 'apps')}
       ${navItem('/downabit/', 'Downabit', 'downabit')}
+      ${navItem('/downabit-player/', 'Downabit Player', 'downabitplayer')}
       ${navItem('/five-dice/', 'Five Dice', 'fivedice')}
       ${navItem('/paint-maze/', 'Paint Maze', 'paintmaze')}
       ${navItem('/downabit/guides/', 'Guides', 'guides')}
@@ -164,7 +171,7 @@ ${body}
         <p>Small, careful apps for the big screen. No ad networks, no tracking, written in plain words.</p>
         <p>${mail}</p>
       </div>
-      <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/paint-maze/">Paint Maze</a></li><li><a href="/apps/">All apps</a></li></ul></div>
+      <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/downabit-player/">Downabit Player</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/paint-maze/">Paint Maze</a></li><li><a href="/apps/">All apps</a></li></ul></div>
       <div><h2>Downabit</h2><ul>
         <li><a href="/downabit/guides/">Connection guides</a></li>
         <li><a href="/downabit/support/">Support</a></li>
@@ -172,6 +179,11 @@ ${body}
         <li><a href="/downabit/privacy/">Privacy policy</a></li>
         <li><a href="/downabit/terms/">Terms of use</a></li>
         <li><a href="/downabit/delete-data/">Delete your data</a></li>
+      </ul></div>
+      <div><h2>Downabit Player</h2><ul>
+        <li><a href="/downabit-player/support/">Support</a></li>
+        <li><a href="/downabit-player/support/#subscription">Subscription</a></li>
+        <li><a href="/downabit-player/privacy/">Privacy policy</a></li>
       </ul></div>
       <div><h2>Games</h2><ul>
         <li><a href="/five-dice/support/">Five Dice support</a></li>
@@ -215,6 +227,15 @@ const downabitCard = `
     <a class="btn btn-amazon" href="${DOWNABIT.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>
   </div>
 </div>`
+
+const downabitPlayerCard = `
+<a class="glass app-card reveal" href="/downabit-player/">
+  <img src="/assets/downabitplayer-icon-256.png" alt="" width="64" height="64">
+  <h3>Downabit Player</h3>
+  <p>The videos and music in your Telegram chats, channels and groups, streamed to the TV as they play.</p>
+  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
+  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
+</a>`
 
 const fiveDiceCard = `
 <a class="glass app-card reveal" href="/five-dice/">
@@ -261,7 +282,7 @@ page('', {
 <section class="section">
   <div class="container">
     <div class="section-head reveal"><h2>Our apps</h2><p>Each one does one job well, on the biggest screen in the house.</p></div>
-    <div class="apps-grid">${downabitCard}${fiveDiceCard}${paintMazeCard}</div>
+    <div class="apps-grid">${downabitCard}${downabitPlayerCard}${fiveDiceCard}${paintMazeCard}</div>
   </div>
 </section>
 
@@ -293,7 +314,7 @@ page('apps/', {
 <section class="section" style="padding-top:40px">
   <div class="container">
     <h2 class="sr-only">All apps</h2>
-    <div class="apps-grid">${downabitCard}${fiveDiceCard}${paintMazeCard}</div>
+    <div class="apps-grid">${downabitCard}${downabitPlayerCard}${fiveDiceCard}${paintMazeCard}</div>
   </div>
 </section>`,
 })
@@ -478,7 +499,7 @@ ${FAQ.map(([q, a]) => `      <details><summary>${q}</summary><div><p>${a}</p></d
     <p class="muted" style="margin-top:32px;font-size:13px;text-align:center">Telegram is a trademark of Telegram FZ-LLC. Google Drive, Google TV and Google Play are trademarks of Google LLC. Dropbox is a trademark of Dropbox, Inc. Amazon, Fire TV and the Amazon Appstore are trademarks of Amazon.com, Inc. Downabit is not affiliated with, endorsed by or sponsored by any of them. The family pictures are illustrations made for this site.</p>
   </div>
 </section>
-${moreApps(fiveDiceCard, paintMazeCard)}`,
+${moreApps(downabitPlayerCard, fiveDiceCard, paintMazeCard)}`,
 })
 
 // ---- documents (legal and help pages share one frame) -----------------------------------------------------------------
@@ -711,9 +732,10 @@ pages['404.html'] = layout({
 </section>`,
 }).replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n<meta name="viewport"')
 
-buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, paintMazeCard) })
+buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, paintMazeCard) })
 buildAccessibility({ page, doc, mail, SITE })
-buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, fiveDiceCard) })
+buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard) })
+buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, more: moreApps(downabitCard, fiveDiceCard, paintMazeCard) })
 
 pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
