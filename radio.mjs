@@ -101,9 +101,9 @@ export function buildRadio({ page, doc, mail, ICON, SITE, ORG, svg, more = '' })
     <div class="glass plan-card reveal">
       <span class="eyebrow">Free and Pro</span>
       <div class="trial gradient-text">Free to listen</div>
-      <p>The free app plays the low-bitrate stations, keeps 10 favourites and shows the last 10 stations you played. It shows a card for one of our other apps from time to time, and never an ad network.</p>
+      <p>The free app lists every station and plays about two in three of them; the HD stations and the Pro collection carry a lock. It keeps 10 favourites and shows the last 10 stations you played. It shows a card for one of our other apps from time to time, and never an ad network.</p>
       <p><strong>Pro</strong> is a monthly or yearly subscription with a 7-day free trial. The price is shown in your store. It gives you:</p>
-      <div class="plan-points"><span class="tag">Every station, in full quality</span><span class="tag">Google sync between your devices</span><span class="tag">Sleep timer</span><span class="tag">Unlimited favourites</span><span class="tag">A longer history</span><span class="tag">Songs I heard</span><span class="tag">Add your own stations</span><span class="tag">Start where you left off</span><span class="tag">No cards</span></div>
+      <div class="plan-points"><span class="tag">Every station, HD included</span><span class="tag">Google sync between your devices</span><span class="tag">Sleep timer</span><span class="tag">Unlimited favourites</span><span class="tag">A longer history</span><span class="tag">Songs I heard</span><span class="tag">Add your own stations</span><span class="tag">Start where you left off</span><span class="tag">No cards</span></div>
       <p>It is billed by Google Play or the Amazon Appstore and renews until you cancel. Cancel any time in the store.</p>
       <div class="btn-row" style="justify-content:center"><a class="btn btn-glass" href="/radio/support/#subscription">Manage your subscription ${ICON.arrow}</a></div>
     </div>
@@ -205,7 +205,7 @@ ${[
   qa('What do I need?', 'Nothing but the app and an internet connection. There is no account to make.'),
   qa('Where do the stations come from?', 'From the open radio-browser.info directory, kept by its community. If a station is missing or its address is wrong, it can be added or corrected there.'),
   qa('A station does not play.', 'Stations move and stop. Try another one, or the same one a little later. If most stations fail, check the internet connection.'),
-  qa('Why do I only see some of the stations in the free app?', 'The free app plays the low-bitrate stations. Pro plays every station, in full quality. A station that needs Pro shows a small "Pro" mark.'),
+  qa('Why do some stations have a lock?', 'The free app lists every station and plays about two in three of them. The locked ones are Pro: the HD stations (above 128 kbps) and the Pro collection, a fixed part of every list. A station never moves between free and Pro. In Browse, each country, genre and language shows how many of its stations are free and how many are Pro.'),
   qa('How do I keep a station?', 'Hold OK on a station on a TV, or press and hold on a phone, to add it to your favourites. The heart on the Now playing screen does the same. The free app keeps 10 favourites; Pro keeps as many as you like.'),
   qa('How do I get to the player quickly?', 'On a TV, hold Back anywhere, or hold OK on any button, and the focus goes to the player at the bottom. Press Left there to return to the menu.'),
   qa('What is the sleep timer?', 'It stops the music after 15, 30, 60 or 90 minutes. It is on the Now playing screen and is part of Pro.'),
