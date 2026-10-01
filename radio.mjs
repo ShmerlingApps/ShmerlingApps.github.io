@@ -74,7 +74,7 @@ export function buildRadio({ page, doc, mail, ICON, SITE, ORG, svg, more = '' })
       <div class="glass feature reveal"><div class="ico">${ICON.play}</div><h3>Browse your way</h3><p>By country, by genre or by language, or see what is near you and what is popular now.</p></div>
       <div class="glass feature reveal"><div class="ico">${search}</div><h3>Search</h3><p>Type a few letters and every station with that name appears, with its country, genre and quality.</p></div>
       <div class="glass feature reveal"><div class="ico">${ICON.heart}</div><h3>Favourites and history</h3><p>Hold OK on a station to keep it. Recently played is always one press away.</p></div>
-      <div class="glass feature reveal"><div class="ico">${ICON.remote}</div><h3>Made for the remote</h3><p>Big buttons, short lists. Hold Back anywhere to jump to the player, and Left goes back to the menu.</p></div>
+      <div class="glass feature reveal"><div class="ico">${ICON.remote}</div><h3>Made for the remote</h3><p>Big buttons, short lists. Now playing in the menu takes you to the station from anywhere, and the screen says what Back does.</p></div>
       <div class="glass feature reveal"><div class="ico">${ICON.text}</div><h3>The song that is playing</h3><p>The title the station announces is shown on the screen and in the notification on a phone.</p></div>
     </div>
   </div>
@@ -207,7 +207,8 @@ ${[
   qa('A station does not play.', 'Stations move and stop. Try another one, or the same one a little later. If most stations fail, check the internet connection.'),
   qa('Why do some stations have a lock?', 'The free app lists every station and plays about two in three of them. The locked ones are Pro: the HD stations (above 128 kbps) and the Pro collection, a fixed part of every list. A station never moves between free and Pro. In Browse, each country, genre and language shows how many of its stations are free and how many are Pro.'),
   qa('How do I keep a station?', 'Hold OK on a station on a TV, or press and hold on a phone, to add it to your favourites. The heart on the Now playing screen does the same. The free app keeps 10 favourites; Pro keeps as many as you like.'),
-  qa('How do I get to the player quickly?', 'On a TV, hold Back anywhere, or hold OK on any button, and the focus goes to the player at the bottom. Press Left there to return to the menu.'),
+  qa('How do I get to the player quickly?', 'Choose Now playing in the menu, or the player bar at the bottom. On a TV, press Left to reach the menu from anywhere.'),
+  qa('What happens when I leave while a station plays?', 'The app asks: keep playing in the background, or stop the music and exit. On a phone or tablet the notification and the lock screen have the controls. A TV shows nothing about an app that plays music, so open Shmerling Radio again to see the station or stop it; while it plays, the TV shows the station and the song as a screensaver.'),
   qa('What is the sleep timer?', 'It stops the music after 15, 30, 60 or 90 minutes. It is on the Now playing screen and is part of Pro.'),
   qa('Can I add a station that is not in the list?', 'Yes, with Pro: My radio &gt; Add a station by its address. Type a name and the web address of the stream.'),
   qa('Can I have the same favourites on two devices?', 'Yes, with Pro and Google sync in Settings. Sign in with Google on each device by scanning the code with your phone; your lists are kept in one file in your own Google Drive. The <a href="/radio/privacy/">privacy policy</a> says what the file holds.'),
