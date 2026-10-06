@@ -71,8 +71,8 @@ export function buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more = '' }) 
     <div class="glass plan-card reveal">
       <span class="eyebrow">Paint Maze Pro</span>
       <div class="trial gradient-text">One purchase</div>
-      <p>Paint Maze is free to play: all 600 Easy and Normal levels, and the first 20 of Hard and of Expert. Now and then a short card between levels shows our other apps, and it can be skipped after five seconds. Paint Maze Pro, bought once in Google Play or the Amazon Appstore, removes the cards and adds the rest.</p>
-      <div class="plan-points"><span class="tag">No cards between levels</span><span class="tag">All 600 Hard and Expert levels</span><span class="tag">Rainbow paint</span></div>
+      <p>Paint Maze is free to play: all 300 Easy levels. Now and then a short card between levels shows our other apps, and it can be skipped after five seconds. Paint Maze Pro, bought once in Google Play or the Amazon Appstore, removes the cards and opens Normal, Hard and Expert.</p>
+      <div class="plan-points"><span class="tag">No cards between levels</span><span class="tag">All 900 Normal, Hard and Expert levels</span><span class="tag">Rainbow paint</span></div>
     </div>
   </div>
 </section>
@@ -144,7 +144,7 @@ ${more}`,
 <div class="faq">
 ${[
   qa('How do I play?', 'Press an arrow on the remote: the ball rolls that way until it hits a wall, painting every square it passes. Paint all the white squares to finish the level. OK takes back a move, BACK pauses. Finish within par for three stars.'),
-  qa('What does Paint Maze Pro add?', 'No cards between levels, all 600 Hard and Expert levels (the first 20 of each are free), and the rainbow paint for your ball. It is a one-time purchase.'),
+  qa('What does Paint Maze Pro add?', 'No cards between levels, all 900 Normal, Hard and Expert levels (Easy is free), and the rainbow paint for your ball. It is a one-time purchase.'),
   qa('I bought Pro but the game does not show it.', 'Pro comes from the store account the TV uses. Make sure the TV is signed in with the account that bought it, then open the game again: it asks the store each time. It also comes back by itself after a reinstall or on another TV with the same account.'),
   qa('Is every level possible?', 'Yes. Every maze is built by rolling a ball through it, so every level can be painted, and par is the number of moves it was built with.'),
   qa('Can blind or low-vision players play?', 'Yes. Switch on Read aloud in Accessibility (or use TalkBack): after every roll the game says what was painted, what is left and which ways the ball can roll. High contrast and the marks on unpainted squares help low vision.'),
