@@ -13,6 +13,7 @@ import { buildSolitaire, SOLITAIRE } from './solitaire.mjs'
 import { buildBackgammon, BACKGAMMON } from './backgammon.mjs'
 import { buildRadio, RADIO } from './radio.mjs'
 import { buildStory } from './story.mjs'
+import { buildTesters } from './testers.mjs'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
 
@@ -140,7 +141,7 @@ const NAV_APPS = [
 
 // The picture a shared link shows: the dragon for the site's own pages, the app's card on every page of an app.
 const OG_IMAGES = {
-  home: 'home', apps: 'apps', story: 'story', accessibility: 'home',
+  home: 'home', apps: 'apps', story: 'story', accessibility: 'home', testers: 'testers',
   downabit: 'downabit', guides: 'downabit', support: 'downabit',
   downabitplayer: 'downabitplayer', radio: 'radio',
   fivedice: 'fivedice', paintmaze: 'paintmaze', solitaire: 'solitaire', backgammon: 'backgammon',
@@ -222,7 +223,7 @@ ${body}
         <a class="brand" href="/">${BRAND_MARK}${SITE.name}</a>
         <p>TV apps and games you can read and hear from the sofa. No ad networks, no tracking, written in plain words.</p>
         <p>${mail}</p>
-        <p><a href="/my-story/">My story</a></p>
+        <p><a href="/my-story/">My story</a> &middot; <a href="/become-a-tester/">Become a tester</a></p>
       </div>
       <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/downabit-player/">Downabit Player</a></li><li><a href="/radio/">Shmerling Radio</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/paint-maze/">Paint Maze</a></li><li><a href="/solitaire/">Solitaire</a></li><li><a href="/backgammon/">Backgammon</a></li><li><a href="/apps/">All apps</a></li></ul></div>
       <div><h2>Downabit</h2><ul>
@@ -385,7 +386,7 @@ page('', {
     <div class="glass prose-block reveal" style="text-align:center">
       <h2>Help the apps grow</h2>
       <p>Try them, send feedback, and if they help you, buy Pro or subscribe in the store. That keeps the development going.</p>
-      <div class="btn-row" style="justify-content:center"><a class="btn btn-glass" href="mailto:${SITE.email}">${ICON.mail} Send feedback</a><a class="btn btn-glass" href="/my-story/">My story</a></div>
+      <div class="btn-row" style="justify-content:center"><a class="btn btn-glass" href="/become-a-tester/">Become a tester</a><a class="btn btn-glass" href="mailto:${SITE.email}">${ICON.mail} Send feedback</a><a class="btn btn-glass" href="/my-story/">My story</a></div>
     </div>
   </div>
 </section>`,
@@ -842,6 +843,7 @@ buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, more: moreAppsBut(d
 buildSolitaire({ page, doc, mail, ICON, SITE, ORG, more: moreAppsBut(solitaireCard) })
 buildRadio({ page, doc, mail, ICON, SITE, ORG, svg, more: moreAppsBut(radioCard) })
 buildStory({ page, mail, ICON, SITE, ORG })
+buildTesters({ page, mail, ICON, SITE, ORG })
 buildBackgammon({ page, doc, mail, ICON, SITE, ORG, more: moreAppsBut(backgammonCard) })
 
 pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>

@@ -33,7 +33,7 @@ ${part('What I hope for', `
       <p>I hope that one day there will be a solution for my eyes, and that I can pay for the procedure myself, along with glasses and aids that make daily life easier. If you know of a solution for very high myopia or a poor-quality retina, I would be glad to hear from you: ${mail}.</p>`)}
 ${part('How you can help', `
       <p>Right now I fund the development myself. Try the apps, send feedback, and if they help you, buy them or subscribe. That keeps the development going, for people with low vision, older people, and everyone who finds it hard to enjoy their TV from the sofa.</p>`)}
-      <div class="btn-row" style="margin-top:26px"><a class="btn btn-play" href="/#apps">See the apps ${ICON.arrow}</a><a class="btn btn-glass" href="mailto:${SITE.email}">${ICON.mail} Send feedback</a></div>
+      <div class="btn-row" style="margin-top:26px"><a class="btn btn-play" href="/#apps">See the apps ${ICON.arrow}</a><a class="btn btn-glass" href="/become-a-tester/">Become a tester</a><a class="btn btn-glass" href="mailto:${SITE.email}">${ICON.mail} Send feedback</a></div>
     </div>
   </div>
 </section>`,
