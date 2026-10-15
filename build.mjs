@@ -131,11 +131,11 @@ const SUBNAVS = {
 const NAV_APPS = [
   ['/downabit/', 'downabit', '/assets/downabit-icon-256.png', 'Downabit', 'Telegram files to the TV, NAS or cloud'],
   ['/downabit-player/', 'downabitplayer', '/assets/downabitplayer-icon-256.png', 'Downabit Player', 'Telegram videos and music, streamed'],
+  ['/radio/', 'radio', '/assets/shmerlingradio-icon-256.png', 'Shmerling Radio', 'Radio from all over the world'],
   ['/five-dice/', 'fivedice', '/assets/fivedice-icon-256.png', 'Five Dice', 'The classic dice game'],
   ['/paint-maze/', 'paintmaze', '/assets/paintmaze-icon-256.png', 'Paint Maze', 'Roll the ball, paint every square'],
   ['/solitaire/', 'solitaire', '/assets/solitaire-icon-256.png', 'Solitaire', 'Klondike patience'],
   ['/backgammon/', 'backgammon', '/assets/backgammon-icon-256.png', 'Backgammon', 'The classic board game'],
-  ['/radio/', 'radio', '/assets/shmerlingradio-icon-256.png', 'Shmerling Radio', 'Radio from all over the world'],
 ]
 
 function layout({ path, title, description, nav, sub, app = 'downabit', body, jsonLd, image = '/assets/og-image.jpg' }) {
@@ -212,7 +212,7 @@ ${body}
         <p>${mail}</p>
         <p><a href="/my-story/">My story</a></p>
       </div>
-      <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/downabit-player/">Downabit Player</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/paint-maze/">Paint Maze</a></li><li><a href="/solitaire/">Solitaire</a></li><li><a href="/backgammon/">Backgammon</a></li><li><a href="/radio/">Shmerling Radio</a></li><li><a href="/apps/">All apps</a></li></ul></div>
+      <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/downabit-player/">Downabit Player</a></li><li><a href="/radio/">Shmerling Radio</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/paint-maze/">Paint Maze</a></li><li><a href="/solitaire/">Solitaire</a></li><li><a href="/backgammon/">Backgammon</a></li><li><a href="/apps/">All apps</a></li></ul></div>
       <div><h2>Downabit</h2><ul>
         <li><a href="/downabit/guides/">Connection guides</a></li>
         <li><a href="/downabit/support/">Support</a></li>
@@ -308,7 +308,12 @@ const radioCard = appCard({ href: '/radio/', icon: '/assets/shmerlingradio-icon-
   tags: [...TV_TAGS, 'Android'],
   text: 'Radio stations from all over the world on the TV and the phone. Browse by country, genre or language, keep favourites, no account.' })
 
+// Every list of apps in this order: the apps first, then the games.
+const ALL_CARDS = [downabitCard, downabitPlayerCard, radioCard, fiveDiceCard, paintMazeCard, solitaireCard, backgammonCard]
+const allCards = () => ALL_CARDS.join('')
+
 // The other apps' cards at the bottom of each app's page, as the games show each other between rounds.
+const moreAppsBut = (self) => moreApps(...ALL_CARDS.filter((c) => c !== self))
 const moreApps = (...cards) => `
 <section class="section">
   <div class="container">
@@ -342,6 +347,13 @@ page('', {
   </div>
 </section>
 
+<section class="section" id="apps">
+  <div class="container">
+    <div class="section-head reveal"><h2>Our apps</h2><p>Each one does one job well, on the biggest screen in the house.</p></div>
+    <div class="apps-grid">${allCards()}</div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <div class="section-head reveal"><h2>How our apps are built</h2><p>For eyes that find the TV hard to read, and for ears when the eyes are tired.</p></div>
@@ -353,13 +365,6 @@ page('', {
       <div class="glass feature reveal"><div class="ico">${ICON.remote}</div><h3>A simple remote</h3><p>Short lists, big buttons, codes you scan with your phone and very little typing.</p></div>
       <div class="glass feature reveal"><div class="ico">${ICON.shield}</div><h3>No ad networks, no tracking</h3><p>Our apps do not send your data to us, because we do not want it.</p></div>
     </div>
-  </div>
-</section>
-
-<section class="section" id="apps">
-  <div class="container">
-    <div class="section-head reveal"><h2>Our apps</h2><p>Each one does one job well, on the biggest screen in the house.</p></div>
-    <div class="apps-grid">${downabitCard}${downabitPlayerCard}${fiveDiceCard}${paintMazeCard}${solitaireCard}${backgammonCard}${radioCard}</div>
   </div>
 </section>
 
@@ -390,7 +395,7 @@ page('apps/', {
 <section class="section" style="padding-top:40px">
   <div class="container">
     <h2 class="sr-only">All apps</h2>
-    <div class="apps-grid">${downabitCard}${downabitPlayerCard}${fiveDiceCard}${paintMazeCard}${solitaireCard}${backgammonCard}${radioCard}</div>
+    <div class="apps-grid">${allCards()}</div>
   </div>
 </section>`,
 })
@@ -585,7 +590,7 @@ ${FAQ.map(([q, a]) => `      <details><summary>${q}</summary><div><p>${a}</p></d
     <p class="muted" style="margin-top:32px;font-size:13px;text-align:center">Telegram is a trademark of Telegram FZ-LLC. Google Drive, Google TV and Google Play are trademarks of Google LLC. Dropbox is a trademark of Dropbox, Inc. Amazon, Fire TV and the Amazon Appstore are trademarks of Amazon.com, Inc. Downabit is not affiliated with, endorsed by or sponsored by any of them. The family pictures are illustrations made for this site.</p>
   </div>
 </section>
-${moreApps(downabitPlayerCard, fiveDiceCard, paintMazeCard, solitaireCard, backgammonCard, radioCard)}`,
+${moreAppsBut(downabitCard)}`,
 })
 
 // ---- documents (legal and help pages share one frame) -----------------------------------------------------------------
@@ -818,14 +823,14 @@ pages['404.html'] = layout({
 </section>`,
 }).replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n<meta name="viewport"')
 
-buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, paintMazeCard, solitaireCard, backgammonCard, radioCard) })
+buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more: moreAppsBut(fiveDiceCard) })
 buildAccessibility({ page, doc, mail, SITE })
-buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard, solitaireCard, backgammonCard, radioCard) })
-buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, more: moreApps(downabitCard, fiveDiceCard, paintMazeCard, solitaireCard, backgammonCard, radioCard) })
-buildSolitaire({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard, paintMazeCard, backgammonCard, radioCard) })
-buildRadio({ page, doc, mail, ICON, SITE, ORG, svg, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard, paintMazeCard, solitaireCard, backgammonCard) })
+buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more: moreAppsBut(paintMazeCard) })
+buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, more: moreAppsBut(downabitPlayerCard) })
+buildSolitaire({ page, doc, mail, ICON, SITE, ORG, more: moreAppsBut(solitaireCard) })
+buildRadio({ page, doc, mail, ICON, SITE, ORG, svg, more: moreAppsBut(radioCard) })
 buildStory({ page, mail, ICON, SITE, ORG })
-buildBackgammon({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard, paintMazeCard, solitaireCard, radioCard) })
+buildBackgammon({ page, doc, mail, ICON, SITE, ORG, more: moreAppsBut(backgammonCard) })
 
 pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
