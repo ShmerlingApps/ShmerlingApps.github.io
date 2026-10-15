@@ -44,7 +44,7 @@ main { flex: 1; }
 
 a { color: #7cb5ff; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 a:hover { color: #a9ceff; }
-img, video { max-width: 100%; display: block; }
+img, video { max-width: 100%; height: auto; display: block; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
 .skip-link { position: absolute; left: -999px; top: 8px; background: var(--text); color: var(--bg); padding: 8px 14px; border-radius: 8px; z-index: 200; }
@@ -136,8 +136,9 @@ h3 { font-size: 19px; line-height: 1.3; font-weight: 650; }
 
 /* a TV frame around a screen */
 .tv { position: relative; }
-.tv-screen { border-radius: 14px; overflow: hidden; border: 10px solid #0b0f17; outline: 1px solid var(--glass-border-strong); box-shadow: 0 30px 80px rgba(2, 6, 23, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.04); background: #000; aspect-ratio: 16 / 9; position: relative; }
-.tv-screen img, .tv-screen video { width: 100%; height: 100%; object-fit: cover; }
+.tv-screen { border-radius: 14px; overflow: hidden; border: 10px solid #0b0f17; outline: 1px solid var(--glass-border-strong); box-shadow: 0 30px 80px rgba(2, 6, 23, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.04); background: #000; position: relative; }
+/* the picture itself is 16:9; the frame wraps it, so nothing is cut off */
+.tv-screen img, .tv-screen video { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .tv-stand { width: 34%; height: 12px; margin: 0 auto; background: linear-gradient(#0b0f17, #1e293b); border-radius: 0 0 10px 10px; }
 .play-overlay { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(to top, rgba(2, 6, 23, 0.55), transparent 60%); border: 0; cursor: pointer; color: #fff; width: 100%; padding: 0; }
 .play-overlay span { width: 76px; height: 76px; border-radius: 50%; background: rgba(255, 255, 255, 0.16); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: grid; place-items: center; border: 1px solid rgba(255, 255, 255, 0.3); transition: transform 0.25s var(--ease), background 0.25s; }
@@ -171,6 +172,7 @@ h3 { font-size: 19px; line-height: 1.3; font-weight: 650; }
 
 /* ---- prose blocks (What is / key facts) ---- */
 .prose-block { padding: 40px; }
+@media (max-width: 600px) { .prose-block { padding: 26px 18px; } }
 .prose-block p { color: #cbd5e1; margin: 14px 0 0; font-size: 17px; }
 .facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0; margin: 20px 0 0; }
 .facts div { padding: 16px 0; border-bottom: 1px solid var(--glass-border); padding-right: 20px; }
@@ -182,8 +184,8 @@ h3 { font-size: 19px; line-height: 1.3; font-weight: 650; }
 .carousel-track { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 6px 2px 18px; scrollbar-width: none; -ms-overflow-style: none; }
 .carousel-track::-webkit-scrollbar { display: none; }
 .slide { flex: 0 0 min(860px, 88%); scroll-snap-align: center; margin: 0; }
-.slide .shot { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--glass-border-strong); box-shadow: 0 24px 60px rgba(2, 6, 23, 0.65); aspect-ratio: 16 / 9; background: #0b1020; }
-.slide .shot img { width: 100%; height: 100%; object-fit: cover; }
+.shot { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--glass-border-strong); box-shadow: 0 24px 60px rgba(2, 6, 23, 0.65); aspect-ratio: 16 / 9; background: #0b1020; }
+.shot img { width: 100%; height: 100%; object-fit: cover; }
 .slide figcaption { margin-top: 16px; text-align: center; }
 .slide figcaption strong { display: block; font-size: 17px; font-weight: 650; }
 .slide figcaption span { color: var(--muted); font-size: 15px; }
@@ -199,7 +201,7 @@ h3 { font-size: 19px; line-height: 1.3; font-weight: 650; }
 .showcase { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
 .showcase + .showcase { margin-top: 96px; }
 .showcase.flip .media { order: 2; }
-.showcase .media img { border-radius: var(--radius-md); border: 1px solid var(--glass-border-strong); box-shadow: 0 24px 60px rgba(2, 6, 23, 0.65); }
+.showcase .media img { width: 100%; border-radius: var(--radius-md); border: 1px solid var(--glass-border-strong); box-shadow: 0 24px 60px rgba(2, 6, 23, 0.65); }
 .showcase p { color: var(--muted); font-size: 17px; margin: 14px 0 0; }
 .showcase ul { color: #cbd5e1; padding-left: 20px; margin: 16px 0 0; }
 .showcase li { margin: 6px 0; }
@@ -369,3 +371,15 @@ html.a11y-focus :focus-visible { outline: 4px solid #ffeb3b !important; outline-
 /* An app card with its own buttons (Downabit: Learn more + Amazon Appstore) is a box, not one big link. */
 .app-card.has-actions:hover { transform: none; }
 .card-actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* ---- tap a screenshot to see it full screen ---- */
+.zoomable { cursor: zoom-in; }
+.zoomable:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.zoom { border: 0; padding: 0; margin: 0; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; background: rgba(2, 6, 23, 0.94); }
+.zoom[open] { display: grid; place-items: center; }
+.zoom::backdrop { background: rgba(2, 6, 23, 0.94); }
+.zoom img { width: min(96vw, calc(92vh * 16 / 9)); height: auto; border-radius: 10px; cursor: zoom-out; }
+.zoom-close { position: fixed; top: 14px; right: 14px; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.12); color: #fff; font-size: 26px; line-height: 1; cursor: pointer; }
+.turn-hint { display: none; }
+@media (orientation: portrait) and (max-width: 700px) { .turn-hint { display: inline; } }
+.zoom-hint { position: fixed; bottom: 14px; left: 0; right: 0; text-align: center; color: #cbd5e1; font-size: 14px; }

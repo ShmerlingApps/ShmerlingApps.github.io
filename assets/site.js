@@ -127,4 +127,30 @@
   } else {
     items.forEach(function (el) { el.classList.add('in'); });
   }
+
+  // Screenshots open full screen when tapped or clicked (Enter or Space from the keyboard); Esc, a tap or the button closes.
+  if (typeof HTMLDialogElement === 'function') {
+    var zoom = document.createElement('dialog');
+    zoom.className = 'zoom';
+    zoom.setAttribute('aria-label', 'Screenshot');
+    zoom.innerHTML = '<button class="zoom-close" type="button" aria-label="Close">&times;</button><img alt=""><p class="zoom-hint"><span class="turn-hint">Turn your phone sideways for a bigger picture. </span>Tap anywhere to close</p>';
+    document.body.appendChild(zoom);
+    var big = zoom.querySelector('img');
+    zoom.addEventListener('click', function () { zoom.close(); });
+    var open = function (img) {
+      var set = img.getAttribute('srcset') || '';
+      var largest = set.split(',').map(function (p) { return p.trim().split(' ')[0]; }).filter(Boolean).pop();
+      big.src = largest || img.currentSrc || img.src;
+      big.alt = img.alt;
+      zoom.showModal();
+    };
+    document.querySelectorAll('.shot img, .tv-screen:not([data-video]) img, .showcase .media img').forEach(function (img) {
+      img.classList.add('zoomable');
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Show full screen: ' + img.alt);
+      img.addEventListener('click', function () { open(img); });
+      img.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img); } });
+    });
+  }
 })();
