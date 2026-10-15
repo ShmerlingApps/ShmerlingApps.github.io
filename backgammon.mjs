@@ -3,7 +3,7 @@
 
 export const BACKGAMMON = {
   play: '',   // https://play.google.com/store/apps/details?id=app.shmerling.backgammon once it is published
-  amazon: '', // https://www.amazon.com/dp/<ASIN> once it is live
+  amazon: 'https://www.amazon.com/dp/B0HLGCTX3B', // live on the Amazon Appstore (ASIN B0HLGCTX3B)
   googlePrivacy: 'https://policies.google.com/privacy',
   amazonPrivacy: 'https://www.amazon.com/privacy',
   playGamesData: 'https://support.google.com/googleplay/answer/9054946',
@@ -13,7 +13,7 @@ export function buildBackgammon({ page, doc, mail, ICON, SITE, ORG, more = '' })
   const shot = (key, alt, lazy = true) =>
     `<img src="/backgammon/media/${key}-1600.webp" srcset="/backgammon/media/${key}-960.webp 960w, /backgammon/media/${key}-1600.webp 1600w" sizes="(max-width: 960px) 88vw, 860px" alt="${alt}" width="1600" height="900"${lazy ? ' loading="lazy"' : ''} decoding="async">`
   const stores = BACKGAMMON.play || BACKGAMMON.amazon
-    ? `<div class="btn-row">${BACKGAMMON.play ? `<a class="btn btn-play" href="${BACKGAMMON.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}${BACKGAMMON.amazon ? `<a class="btn btn-amazon" href="${BACKGAMMON.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>` : ''}</div>`
+    ? `<div class="btn-row">${BACKGAMMON.play ? `<a class="btn btn-play" href="${BACKGAMMON.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}${BACKGAMMON.amazon ? `<a class="btn btn-amazon" href="${BACKGAMMON.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>` : ''}</div>${BACKGAMMON.play ? '' : '<p class="hero-note">Coming soon to Google Play.</p>'}`
     : `<p class="hero-note">Coming soon to Google Play and the Amazon Appstore.</p>`
 
   page('backgammon/', {

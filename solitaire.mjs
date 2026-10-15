@@ -3,7 +3,7 @@
 
 export const SOLITAIRE = {
   play: '',   // https://play.google.com/store/apps/details?id=app.shmerling.solitaire once it is published
-  amazon: '', // https://www.amazon.com/dp/<ASIN> once it is live
+  amazon: 'https://www.amazon.com/dp/B0HLG93WL1', // live on the Amazon Appstore (ASIN B0HLG93WL1)
   googlePrivacy: 'https://policies.google.com/privacy',
   amazonPrivacy: 'https://www.amazon.com/privacy',
   playGamesData: 'https://support.google.com/googleplay/answer/9054946',
@@ -13,7 +13,7 @@ export function buildSolitaire({ page, doc, mail, ICON, SITE, ORG, more = '' }) 
   const shot = (key, alt, lazy = true) =>
     `<img src="/solitaire/media/${key}-1600.webp" srcset="/solitaire/media/${key}-960.webp 960w, /solitaire/media/${key}-1600.webp 1600w" sizes="(max-width: 960px) 88vw, 860px" alt="${alt}" width="1600" height="900"${lazy ? ' loading="lazy"' : ''} decoding="async">`
   const stores = SOLITAIRE.play || SOLITAIRE.amazon
-    ? `<div class="btn-row">${SOLITAIRE.play ? `<a class="btn btn-play" href="${SOLITAIRE.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}${SOLITAIRE.amazon ? `<a class="btn btn-amazon" href="${SOLITAIRE.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>` : ''}</div>`
+    ? `<div class="btn-row">${SOLITAIRE.play ? `<a class="btn btn-play" href="${SOLITAIRE.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}${SOLITAIRE.amazon ? `<a class="btn btn-amazon" href="${SOLITAIRE.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>` : ''}</div>${SOLITAIRE.play ? '' : '<p class="hero-note">Coming soon to Google Play.</p>'}`
     : `<p class="hero-note">Coming soon to Google Play and the Amazon Appstore.</p>`
 
   page('solitaire/', {

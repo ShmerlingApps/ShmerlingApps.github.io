@@ -3,7 +3,7 @@
 
 export const PAINT_MAZE = {
   play: '',   // https://play.google.com/store/apps/details?id=app.shmerling.paintmaze once it is published
-  amazon: '', // https://www.amazon.com/dp/<ASIN> once it is live
+  amazon: 'https://www.amazon.com/dp/B0HLGDBKZL', // live on the Amazon Appstore (ASIN B0HLGDBKZL)
   googlePrivacy: 'https://policies.google.com/privacy',
   amazonPrivacy: 'https://www.amazon.com/privacy',
 }
@@ -12,7 +12,7 @@ export function buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more = '' }) 
   const shot = (key, alt, lazy = true) =>
     `<img src="/paint-maze/media/${key}-1600.webp" srcset="/paint-maze/media/${key}-960.webp 960w, /paint-maze/media/${key}-1600.webp 1600w" sizes="(max-width: 960px) 88vw, 860px" alt="${alt}" width="1600" height="900"${lazy ? ' loading="lazy"' : ''} decoding="async">`
   const stores = PAINT_MAZE.play || PAINT_MAZE.amazon
-    ? `<div class="btn-row">${PAINT_MAZE.play ? `<a class="btn btn-play" href="${PAINT_MAZE.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}${PAINT_MAZE.amazon ? `<a class="btn btn-amazon" href="${PAINT_MAZE.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>` : ''}</div>`
+    ? `<div class="btn-row">${PAINT_MAZE.play ? `<a class="btn btn-play" href="${PAINT_MAZE.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}${PAINT_MAZE.amazon ? `<a class="btn btn-amazon" href="${PAINT_MAZE.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>` : ''}</div>${PAINT_MAZE.play ? '' : '<p class="hero-note">Coming soon to Google Play.</p>'}`
     : `<p class="hero-note">Coming soon to Google Play and the Amazon Appstore.</p>`
 
   page('paint-maze/', {

@@ -3,7 +3,7 @@
 
 export const FIVE_DICE = {
   play: '',   // https://play.google.com/store/apps/details?id=app.shmerling.fivedice once it is published
-  amazon: '', // the Amazon page once it has an ASIN
+  amazon: 'https://www.amazon.com/dp/B0HLGFQPCC', // live on the Amazon Appstore (ASIN B0HLGFQPCC)
   googlePrivacy: 'https://policies.google.com/privacy',
   amazonPrivacy: 'https://www.amazon.com/privacy',
   playGamesData: 'https://support.google.com/googleplay/answer/9054946',
@@ -13,7 +13,7 @@ export function buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more = '' }) {
   const shot = (key, alt, lazy = true) =>
     `<img src="/five-dice/media/${key}-1600.webp" srcset="/five-dice/media/${key}-960.webp 960w, /five-dice/media/${key}-1600.webp 1600w" sizes="(max-width: 960px) 88vw, 860px" alt="${alt}" width="1600" height="900"${lazy ? ' loading="lazy"' : ''} decoding="async">`
   const stores = FIVE_DICE.play || FIVE_DICE.amazon
-    ? `<div class="btn-row">${FIVE_DICE.play ? `<a class="btn btn-play" href="${FIVE_DICE.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}${FIVE_DICE.amazon ? `<a class="btn btn-amazon" href="${FIVE_DICE.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>` : ''}</div>`
+    ? `<div class="btn-row">${FIVE_DICE.play ? `<a class="btn btn-play" href="${FIVE_DICE.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}${FIVE_DICE.amazon ? `<a class="btn btn-amazon" href="${FIVE_DICE.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>` : ''}</div>${FIVE_DICE.play ? '' : '<p class="hero-note">Coming soon to Google Play.</p>'}`
     : `<p class="hero-note">Coming soon to Google Play and the Amazon Appstore.</p>`
 
   page('five-dice/', {

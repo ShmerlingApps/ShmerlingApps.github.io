@@ -5,13 +5,13 @@ import { writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { buildGuides } from './guides.mjs'
-import { buildFiveDice } from './fivedice.mjs'
+import { buildFiveDice, FIVE_DICE } from './fivedice.mjs'
 import { buildAccessibility } from './accessibility.mjs'
-import { buildPaintMaze } from './paintmaze.mjs'
-import { buildDownabitPlayer } from './downabitplayer.mjs'
-import { buildSolitaire } from './solitaire.mjs'
-import { buildBackgammon } from './backgammon.mjs'
-import { buildRadio } from './radio.mjs'
+import { buildPaintMaze, PAINT_MAZE } from './paintmaze.mjs'
+import { buildDownabitPlayer, DOWNABIT_PLAYER } from './downabitplayer.mjs'
+import { buildSolitaire, SOLITAIRE } from './solitaire.mjs'
+import { buildBackgammon, BACKGAMMON } from './backgammon.mjs'
+import { buildRadio, RADIO } from './radio.mjs'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
 
@@ -25,7 +25,9 @@ const SITE = {
 }
 
 const DOWNABIT = {
-  play: 'https://play.google.com/store/apps/details?id=app.shmerling.downabit',
+  // Not public on Google Play yet (production access pending): set to
+  // 'https://play.google.com/store/apps/details?id=app.shmerling.downabit' once it is live there.
+  play: '',
   // The app's own Amazon page (ASIN B0HKNJKTY5). A search for the name finds fishing baits first.
   amazon: 'https://www.amazon.com/dp/B0HKNJKTY5',
   playSubscriptions: 'https://play.google.com/store/account/subscriptions',
@@ -63,6 +65,7 @@ const ICON = {
   prev: svg('<path d="m15 5-7 7 7 7"/>'),
   next: svg('<path d="m9 5 7 7-7 7"/>'),
   arrow: svg('<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>'),
+  chevron: svg('<path d="m6 9 6 6 6-6"/>'),
   playFilled: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 4.5v15l13-7.5z"/></svg>',
   storePlay: svg('<path d="M5 3.5v17l14-8.5z"/>'),
   storeBag: svg('<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>'),
@@ -71,9 +74,9 @@ const ICON = {
 const BRAND_MARK = `<svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b8ff0"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#bm)"/><path d="M21 11.2c-.9-1.5-2.7-2.4-4.8-2.4-2.8 0-4.8 1.5-4.8 3.6 0 4.7 9.9 2.6 9.9 7.4 0 2.2-2.1 3.8-5 3.8-2.3 0-4.2-1-5.2-2.7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>`
 
 const storeButtons = (extra = '') => `<div class="btn-row"${extra}>
-  <a class="btn btn-play" href="${DOWNABIT.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>
+  ${DOWNABIT.play ? `<a class="btn btn-play" href="${DOWNABIT.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}
   <a class="btn btn-amazon" href="${DOWNABIT.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>
-</div>`
+</div>${DOWNABIT.play ? '' : '<p class="hero-note">Coming soon to Google Play.</p>'}`
 
 // ---- page frame -----------------------------------------------------------------------------------------------------
 // Each app's own pages, shown as tabs above its documents.
@@ -119,9 +122,21 @@ const SUBNAVS = {
   ]],
 }
 
+// The Apps menu: every app with its icon and one line, then All apps.
+const NAV_APPS = [
+  ['/downabit/', 'downabit', '/assets/downabit-icon-256.png', 'Downabit', 'Telegram files to the TV, NAS or cloud'],
+  ['/downabit-player/', 'downabitplayer', '/assets/downabitplayer-icon-256.png', 'Downabit Player', 'Telegram videos and music, streamed'],
+  ['/five-dice/', 'fivedice', '/assets/fivedice-icon-256.png', 'Five Dice', 'The classic dice game'],
+  ['/paint-maze/', 'paintmaze', '/assets/paintmaze-icon-256.png', 'Paint Maze', 'Roll the ball, paint every square'],
+  ['/solitaire/', 'solitaire', '/assets/solitaire-icon-256.png', 'Solitaire', 'Klondike patience'],
+  ['/backgammon/', 'backgammon', '/assets/backgammon-icon-256.png', 'Backgammon', 'The classic board game'],
+  ['/radio/', 'radio', '/assets/shmerlingradio-icon-256.png', 'Shmerling Radio', 'Radio from all over the world'],
+]
+
 function layout({ path, title, description, nav, sub, app = 'downabit', body, jsonLd, image = '/assets/og-image.jpg' }) {
   const canonical = SITE.url + '/' + path
   const navItem = (href, label, key) => `<a href="${href}"${nav === key ? ' aria-current="page"' : ''}>${label}</a>`
+  const appsCurrent = nav === 'apps' || NAV_APPS.some(([, key]) => key === nav)
   const subnav = sub
     ? `<nav class="subnav" aria-label="${SUBNAVS[app][0]}">${SUBNAVS[app][1].map(([h, l, k]) => `<a href="${h}"${sub === k ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>`
     : ''
@@ -167,14 +182,13 @@ ${ld}<script src="/assets/site.js" defer></script>
     <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">${ICON.menu}</button>
     <nav class="nav-links" id="nav-links" aria-label="Main">
       ${navItem('/', 'Home', 'home')}
-      ${navItem('/apps/', 'Apps', 'apps')}
-      ${navItem('/downabit/', 'Downabit', 'downabit')}
-      ${navItem('/downabit-player/', 'Downabit Player', 'downabitplayer')}
-      ${navItem('/five-dice/', 'Five Dice', 'fivedice')}
-      ${navItem('/paint-maze/', 'Paint Maze', 'paintmaze')}
-      ${navItem('/solitaire/', 'Solitaire', 'solitaire')}
-      ${navItem('/backgammon/', 'Backgammon', 'backgammon')}
-      ${navItem('/radio/', 'Radio', 'radio')}
+      <div class="nav-menu">
+        <button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="apps-menu"${appsCurrent ? ' data-current="true"' : ''}>Apps ${ICON.chevron}</button>
+        <div class="nav-pop" id="apps-menu">
+          ${NAV_APPS.map(([href, key, icon, name, line]) => `<a href="${href}"${nav === key ? ' aria-current="page"' : ''}><img src="${icon}" alt="" width="36" height="36"><span><strong>${name}</strong><small>${line}</small></span></a>`).join('')}
+          <a class="nav-pop-all" href="/apps/"${nav === 'apps' ? ' aria-current="page"' : ''}>All apps, store links and support ${ICON.arrow}</a>
+        </div>
+      </div>
       ${navItem('/downabit/guides/', 'Guides', 'guides')}
       ${navItem('/downabit/support/', 'Support', 'support')}
     </nav>
@@ -222,7 +236,7 @@ ${body}
         <li><a href="/backgammon/privacy/">Backgammon privacy</a></li>
       </ul></div>
       <div><h2>Get Downabit</h2><ul>
-        <li><a href="${DOWNABIT.play}" rel="noopener">Google Play</a></li>
+        <li>${DOWNABIT.play ? `<a href="${DOWNABIT.play}" rel="noopener">Google Play</a>` : 'Google Play: coming soon'}</li>
         <li><a href="${DOWNABIT.amazon}" rel="noopener">Amazon Appstore</a></li>
       </ul></div>
     </div>
@@ -244,73 +258,49 @@ function page(path, opts) {
 const ORG = { '@type': 'Organization', '@id': SITE.url + '/#org', name: SITE.name, url: SITE.url + '/', email: SITE.email, logo: SITE.url + '/assets/apple-touch-icon.png' }
 
 // ---- Home -------------------------------------------------------------------------------------------------------------
-// Downabit is live on Amazon, so its card carries the store button too: a box with two links, not one big link
-// (a link cannot hold another link).
-const downabitCard = `
+// Every app card: Learn more, plus the Amazon Appstore button once the app is live there. Such a card is a box with
+// two links, not one big link (a link cannot hold another link).
+const TV_TAGS = ['Android TV', 'Google TV', 'Fire TV']
+function appCard({ href, icon, name, text, tags = TV_TAGS, amazon }) {
+  const tagRow = `<div class="tags">${tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>`
+  if (!amazon) {
+    return `
+<a class="glass app-card reveal" href="${href}">
+  <img src="${icon}" alt="" width="64" height="64">
+  <h3>${name}</h3>
+  <p>${text}</p>
+  ${tagRow}
+  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
+</a>`
+  }
+  return `
 <div class="glass app-card has-actions reveal">
-  <img src="/assets/downabit-icon-256.png" alt="" width="64" height="64">
-  <h3>Downabit</h3>
-  <p>Your family's photos and videos, from your private Telegram channel to the TV, a USB drive, your NAS or the cloud.</p>
-  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
+  <img src="${icon}" alt="" width="64" height="64">
+  <h3>${name}</h3>
+  <p>${text}</p>
+  ${tagRow}
   <div class="card-actions">
-    <a class="btn btn-glass" href="/downabit/">Learn more<span class="sr-only"> about Downabit</span> ${ICON.arrow}</a>
-    <a class="btn btn-amazon" href="${DOWNABIT.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>
+    <a class="btn btn-glass" href="${href}">Learn more<span class="sr-only"> about ${name}</span> ${ICON.arrow}</a>
+    <a class="btn btn-amazon" href="${amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span><span class="sr-only"> - ${name}</span></a>
   </div>
 </div>`
+}
 
-const downabitPlayerCard = `
-<a class="glass app-card reveal" href="/downabit-player/">
-  <img src="/assets/downabitplayer-icon-256.png" alt="" width="64" height="64">
-  <h3>Downabit Player</h3>
-  <p>The videos and music in your Telegram chats, channels and groups, streamed to the TV as they play.</p>
-  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
-  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
-</a>`
-
-const fiveDiceCard = `
-<a class="glass app-card reveal" href="/five-dice/">
-  <img src="/assets/fivedice-icon-256.png" alt="" width="64" height="64">
-  <h3>Five Dice</h3>
-  <p>The classic dice game, you against the computer, played with the remote. Accessible for blind and low-vision players.</p>
-  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
-  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
-</a>`
-
-const paintMazeCard = `
-<a class="glass app-card reveal" href="/paint-maze/">
-  <img src="/assets/paintmaze-icon-256.png" alt="" width="64" height="64">
-  <h3>Paint Maze</h3>
-  <p>Roll the ball with the remote and paint every square of the maze. 1,200 levels, and it can be played by ear.</p>
-  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
-  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
-</a>`
-
-const solitaireCard = `
-<a class="glass app-card reveal" href="/solitaire/">
-  <img src="/assets/solitaire-icon-256.png" alt="" width="64" height="64">
-  <h3>Solitaire</h3>
-  <p>Classic Klondike patience, Draw 1 or Draw 3, played with the remote. Accessible for blind and low-vision players.</p>
-  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
-  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
-</a>`
-
-const backgammonCard = `
-<a class="glass app-card reveal" href="/backgammon/">
-  <img src="/assets/backgammon-icon-256.png" alt="" width="64" height="64">
-  <h3>Backgammon</h3>
-  <p>The classic board game against the computer at three levels, played with the remote. It can be followed by ear.</p>
-  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span></div>
-  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
-</a>`
-
-const radioCard = `
-<a class="glass app-card reveal" href="/radio/">
-  <img src="/assets/shmerlingradio-icon-256.png" alt="" width="64" height="64">
-  <h3>Shmerling Radio</h3>
-  <p>Radio stations from all over the world on the TV and the phone. Browse by country, genre or language, keep favourites, no account.</p>
-  <div class="tags"><span class="tag">Android TV</span><span class="tag">Google TV</span><span class="tag">Fire TV</span><span class="tag">Android</span></div>
-  <span class="btn btn-glass more">Learn more ${ICON.arrow}</span>
-</a>`
+const downabitCard = appCard({ href: '/downabit/', icon: '/assets/downabit-icon-256.png', name: 'Downabit', amazon: DOWNABIT.amazon,
+  text: "Your family's photos and videos, from your private Telegram channel to the TV, a USB drive, your NAS or the cloud." })
+const downabitPlayerCard = appCard({ href: '/downabit-player/', icon: '/assets/downabitplayer-icon-256.png', name: 'Downabit Player', amazon: DOWNABIT_PLAYER.amazon,
+  text: 'The videos and music in your Telegram chats, channels and groups, streamed to the TV as they play.' })
+const fiveDiceCard = appCard({ href: '/five-dice/', icon: '/assets/fivedice-icon-256.png', name: 'Five Dice', amazon: FIVE_DICE.amazon,
+  text: 'The classic dice game, you against the computer, played with the remote. Accessible for blind and low-vision players.' })
+const paintMazeCard = appCard({ href: '/paint-maze/', icon: '/assets/paintmaze-icon-256.png', name: 'Paint Maze', amazon: PAINT_MAZE.amazon,
+  text: 'Roll the ball with the remote and paint every square of the maze. 1,200 levels, and it can be played by ear.' })
+const solitaireCard = appCard({ href: '/solitaire/', icon: '/assets/solitaire-icon-256.png', name: 'Solitaire', amazon: SOLITAIRE.amazon,
+  text: 'Classic Klondike patience, Draw 1 or Draw 3, played with the remote. Accessible for blind and low-vision players.' })
+const backgammonCard = appCard({ href: '/backgammon/', icon: '/assets/backgammon-icon-256.png', name: 'Backgammon', amazon: BACKGAMMON.amazon,
+  text: 'The classic board game against the computer at three levels, played with the remote. It can be followed by ear.' })
+const radioCard = appCard({ href: '/radio/', icon: '/assets/shmerlingradio-icon-256.png', name: 'Shmerling Radio', amazon: RADIO.amazon,
+  tags: [...TV_TAGS, 'Android'],
+  text: 'Radio stations from all over the world on the TV and the phone. Browse by country, genre or language, keep favourites, no account.' })
 
 // The other apps' cards at the bottom of each app's page, as the games show each other between rounds.
 const moreApps = (...cards) => `
@@ -416,7 +406,7 @@ page('downabit/', {
         operatingSystem: 'Android TV, Google TV, Fire OS',
         publisher: { '@id': ORG['@id'] },
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free download; monthly or yearly subscription with a 7-day free trial' },
-        installUrl: DOWNABIT.play,
+        installUrl: DOWNABIT.play || DOWNABIT.amazon,
         privacyPolicy: SITE.url + '/downabit/privacy/',
       },
       {

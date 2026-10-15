@@ -13,6 +13,22 @@
     });
   }
 
+  // Apps menu: a button that opens the list of apps; Escape or a click outside closes it.
+  document.querySelectorAll('.nav-menu').forEach(function (menu) {
+    var btn = menu.querySelector('.nav-menu-btn');
+    if (!btn) return;
+    function set(open) {
+      menu.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    btn.addEventListener('click', function (e) { e.stopPropagation(); set(!menu.classList.contains('open')); });
+    document.addEventListener('click', function (e) { if (!menu.contains(e.target)) set(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.classList.contains('open')) { set(false); btn.focus(); }
+    });
+    menu.addEventListener('focusout', function (e) { if (e.relatedTarget && !menu.contains(e.relatedTarget)) set(false); });
+  });
+
   // Carousels: native scroll-snap for swiping, plus arrows, dots, keyboard and a gentle autoplay.
   document.querySelectorAll('[data-carousel]').forEach(function (root) {
     var track = root.querySelector('.carousel-track');

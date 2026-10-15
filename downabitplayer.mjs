@@ -3,7 +3,7 @@
 
 export const DOWNABIT_PLAYER = {
   play: '',   // https://play.google.com/store/apps/details?id=<package> once it is published
-  amazon: '', // https://www.amazon.com/dp/<ASIN> once it is live
+  amazon: 'https://www.amazon.com/dp/B0HLFV7R38', // live on the Amazon Appstore (ASIN B0HLFV7R38)
   playSubscriptions: 'https://play.google.com/store/account/subscriptions',
   amazonSubscriptions: 'https://www.amazon.com/gp/mas/your-account/myapps/yoursubscriptions',
   telegramPrivacy: 'https://telegram.org/privacy',
@@ -28,7 +28,7 @@ export function buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, mor
   const shot = (key, alt, lazy = true) =>
     `<img src="/downabit-player/media/${key}-1600.webp" srcset="/downabit-player/media/${key}-960.webp 960w, /downabit-player/media/${key}-1600.webp 1600w" sizes="(max-width: 960px) 88vw, 860px" alt="${alt}" width="1600" height="900"${lazy ? ' loading="lazy"' : ''} decoding="async">`
   const stores = P.play || P.amazon
-    ? `<div class="btn-row">${P.play ? `<a class="btn btn-play" href="${P.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}${P.amazon ? `<a class="btn btn-amazon" href="${P.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>` : ''}</div>`
+    ? `<div class="btn-row">${P.play ? `<a class="btn btn-play" href="${P.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}${P.amazon ? `<a class="btn btn-amazon" href="${P.amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span></a>` : ''}</div>${P.play ? '' : '<p class="hero-note">Coming soon to Google Play.</p>'}`
     : `<p class="hero-note">Coming soon to Google Play and the Amazon Appstore.</p>`
   const slides = SCREENS.map(([key, name, text, alt], i) => `
       <figure class="slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${SCREENS.length}: ${name}">

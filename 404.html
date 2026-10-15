@@ -40,14 +40,13 @@
     <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     <nav class="nav-links" id="nav-links" aria-label="Main">
       <a href="/">Home</a>
-      <a href="/apps/">Apps</a>
-      <a href="/downabit/">Downabit</a>
-      <a href="/downabit-player/">Downabit Player</a>
-      <a href="/five-dice/">Five Dice</a>
-      <a href="/paint-maze/">Paint Maze</a>
-      <a href="/solitaire/">Solitaire</a>
-      <a href="/backgammon/">Backgammon</a>
-      <a href="/radio/">Radio</a>
+      <div class="nav-menu">
+        <button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="apps-menu">Apps <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-pop" id="apps-menu">
+          <a href="/downabit/"><img src="/assets/downabit-icon-256.png" alt="" width="36" height="36"><span><strong>Downabit</strong><small>Telegram files to the TV, NAS or cloud</small></span></a><a href="/downabit-player/"><img src="/assets/downabitplayer-icon-256.png" alt="" width="36" height="36"><span><strong>Downabit Player</strong><small>Telegram videos and music, streamed</small></span></a><a href="/five-dice/"><img src="/assets/fivedice-icon-256.png" alt="" width="36" height="36"><span><strong>Five Dice</strong><small>The classic dice game</small></span></a><a href="/paint-maze/"><img src="/assets/paintmaze-icon-256.png" alt="" width="36" height="36"><span><strong>Paint Maze</strong><small>Roll the ball, paint every square</small></span></a><a href="/solitaire/"><img src="/assets/solitaire-icon-256.png" alt="" width="36" height="36"><span><strong>Solitaire</strong><small>Klondike patience</small></span></a><a href="/backgammon/"><img src="/assets/backgammon-icon-256.png" alt="" width="36" height="36"><span><strong>Backgammon</strong><small>The classic board game</small></span></a><a href="/radio/"><img src="/assets/shmerlingradio-icon-256.png" alt="" width="36" height="36"><span><strong>Shmerling Radio</strong><small>Radio from all over the world</small></span></a>
+          <a class="nav-pop-all" href="/apps/">All apps, store links and support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+      </div>
       <a href="/downabit/guides/">Guides</a>
       <a href="/downabit/support/">Support</a>
     </nav>
@@ -103,7 +102,7 @@
         <li><a href="/backgammon/privacy/">Backgammon privacy</a></li>
       </ul></div>
       <div><h2>Get Downabit</h2><ul>
-        <li><a href="https://play.google.com/store/apps/details?id=app.shmerling.downabit" rel="noopener">Google Play</a></li>
+        <li>Google Play: coming soon</li>
         <li><a href="https://www.amazon.com/dp/B0HKNJKTY5" rel="noopener">Amazon Appstore</a></li>
       </ul></div>
     </div>
