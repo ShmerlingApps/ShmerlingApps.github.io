@@ -27,7 +27,7 @@ ${part('My eyes', `
       <p>I was born with severe low vision, a very high and rare myopia. Over the years it got much worse. I worked with computers for many years; about ten years ago my sight declined badly and I stopped working.</p>`)}
 ${part('Watching TV', `
       <p>Since then I spend most of my day at home. I watched a lot of TV and played with streamers and apps. In recent years my sight has become so poor that I can hardly see the screen.</p>`)}
-${part('What I decided to do', `
+${part("I've decided to do apps about it", `
       <p>I decided to design apps and games around my own vision, so I can use them comfortably on the TV with a simple remote. Every app takes care of text size, colours, contrast and outlines, is simple to use, and you always know where you are on the screen. The games already read themselves aloud and have high contrast; the other apps are getting the same, and more apps and options are coming.</p>`)}
 ${part('What I hope for', `
       <p>I hope that one day there will be a solution for my eyes, and that I can pay for the procedure myself, along with glasses and aids that make daily life easier. If you know of a solution for very high myopia or a poor-quality retina, I would be glad to hear from you: ${mail}.</p>`)}
