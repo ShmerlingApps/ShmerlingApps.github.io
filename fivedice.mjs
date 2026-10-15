@@ -60,6 +60,7 @@ export function buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more = '' }) {
 <section class="section">
   <div class="container narrow">
     <div class="glass prose-block reveal">
+      <span class="eyebrow">Accessibility</span>
       <h2>For every player</h2>
       <p>Five Dice works with TalkBack: every die, box and score describes itself, and each roll is announced. Without a screen reader, the game can read itself aloud. High contrast turns the table black and white with yellow and cyan, numbers on the dice replace the pips, and the game follows the text size set on your TV.</p>
       <div class="shot" style="margin-top:18px">${shot('accessibility', 'The Accessibility panel: read aloud, high contrast and numbers on dice')}</div>

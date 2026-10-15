@@ -113,6 +113,9 @@ export function buildRadio({ page, doc, mail, ICON, SITE, ORG, svg, more = '' })
 <section class="section">
   <div class="container narrow">
     <div class="glass prose-block reveal">
+      <span class="eyebrow">Accessibility</span>
+      <h2>Made for the remote and for tired eyes</h2>
+      <p>Shmerling Radio works with TalkBack: its buttons and icons describe themselves. Text follows the size set on your TV or phone, and on the TV the focused item always has a bold outline.</p>
       <h2>The same lists on every device</h2>
       <p>With Pro you can have your favourites, history and songs on every device signed in to the same Google account. Sign in with Google by scanning a code with your phone; the lists are kept in one file in your own Google Drive. It is optional.</p>
       <h2>A station the directory does not have</h2>

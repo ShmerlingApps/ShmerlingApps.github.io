@@ -103,6 +103,9 @@ export function buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, mor
 <section class="section">
   <div class="container narrow">
     <div class="glass prose-block reveal">
+      <span class="eyebrow">Accessibility</span>
+      <h2>Made for the remote and for tired eyes</h2>
+      <p>Downabit Player works with TalkBack: its buttons and icons describe themselves. Text follows the size set on your TV and the focused item always has a bold outline.</p>
       <h2>Music too</h2>
       <p>Songs play with previous and next, shuffle and repeat. The playlist is the chat the song came from, or your search results.</p>
       <h2>The same list on every TV</h2>

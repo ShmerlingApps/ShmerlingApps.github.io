@@ -12,6 +12,7 @@ import { buildDownabitPlayer, DOWNABIT_PLAYER } from './downabitplayer.mjs'
 import { buildSolitaire, SOLITAIRE } from './solitaire.mjs'
 import { buildBackgammon, BACKGAMMON } from './backgammon.mjs'
 import { buildRadio, RADIO } from './radio.mjs'
+import { buildStory } from './story.mjs'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
 
@@ -61,6 +62,10 @@ const ICON = {
   globe: svg('<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/>'),
   heart: svg('<path d="M12 20s-7.5-4.5-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.5-7.5 10-7.5 10z"/>'),
   text: svg('<path d="M4 6h16M4 11h16M4 16h10"/>'),
+  bigText: svg('<path d="M3 19 8.5 5h1L15 19"/><path d="M5 14h8"/><path d="M15.5 19 18.5 11h.5l3 8"/><path d="M16.5 16.5h4"/>'),
+  contrast: svg('<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>'),
+  focus: svg('<path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><circle cx="12" cy="12" r="3"/>'),
+  speaker: svg('<path d="M4 10v4h3l5 4V6L7 10z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a7.5 7.5 0 0 1 0 11"/>'),
   menu: svg('<path d="M4 7h16M4 12h16M4 17h16"/>'),
   prev: svg('<path d="m15 5-7 7 7 7"/>'),
   next: svg('<path d="m9 5 7 7-7 7"/>'),
@@ -136,7 +141,7 @@ const NAV_APPS = [
 function layout({ path, title, description, nav, sub, app = 'downabit', body, jsonLd, image = '/assets/og-image.jpg' }) {
   const canonical = SITE.url + '/' + path
   const navItem = (href, label, key) => `<a href="${href}"${nav === key ? ' aria-current="page"' : ''}>${label}</a>`
-  const appsCurrent = nav === 'apps' || NAV_APPS.some(([, key]) => key === nav)
+  const appsCurrent = nav === 'apps' || nav === 'guides' || nav === 'support' || NAV_APPS.some(([, key]) => key === nav)
   const subnav = sub
     ? `<nav class="subnav" aria-label="${SUBNAVS[app][0]}">${SUBNAVS[app][1].map(([h, l, k]) => `<a href="${h}"${sub === k ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>`
     : ''
@@ -189,8 +194,8 @@ ${ld}<script src="/assets/site.js" defer></script>
           <a class="nav-pop-all" href="/apps/"${nav === 'apps' ? ' aria-current="page"' : ''}>All apps, store links and support ${ICON.arrow}</a>
         </div>
       </div>
-      ${navItem('/downabit/guides/', 'Guides', 'guides')}
-      ${navItem('/downabit/support/', 'Support', 'support')}
+      ${navItem('/my-story/', 'My story', 'story')}
+      <a href="mailto:${SITE.email}">Contact</a>
     </nav>
   </div>
 </header>
@@ -203,8 +208,9 @@ ${body}
     <div class="cols">
       <div class="about">
         <a class="brand" href="/">${BRAND_MARK}${SITE.name}</a>
-        <p>Small, careful apps for the big screen. No ad networks, no tracking, written in plain words.</p>
+        <p>TV apps and games you can read and hear from the sofa. No ad networks, no tracking, written in plain words.</p>
         <p>${mail}</p>
+        <p><a href="/my-story/">My story</a></p>
       </div>
       <div><h2>Apps</h2><ul><li><a href="/downabit/">Downabit</a></li><li><a href="/downabit-player/">Downabit Player</a></li><li><a href="/five-dice/">Five Dice</a></li><li><a href="/paint-maze/">Paint Maze</a></li><li><a href="/solitaire/">Solitaire</a></li><li><a href="/backgammon/">Backgammon</a></li><li><a href="/radio/">Shmerling Radio</a></li><li><a href="/apps/">All apps</a></li></ul></div>
       <div><h2>Downabit</h2><ul>
@@ -261,8 +267,8 @@ const ORG = { '@type': 'Organization', '@id': SITE.url + '/#org', name: SITE.nam
 // Every app card: Learn more, plus the Amazon Appstore button once the app is live there. Such a card is a box with
 // two links, not one big link (a link cannot hold another link).
 const TV_TAGS = ['Android TV', 'Google TV', 'Fire TV']
-function appCard({ href, icon, name, text, tags = TV_TAGS, amazon }) {
-  const tagRow = `<div class="tags">${tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>`
+function appCard({ href, icon, name, text, access, tags = TV_TAGS, amazon }) {
+  const tagRow = `${access ? `<p class="access">${ICON.speaker}<span>${access}</span></p>` : ''}<div class="tags">${tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>`
   if (!amazon) {
     return `
 <a class="glass app-card reveal" href="${href}">
@@ -286,19 +292,19 @@ function appCard({ href, icon, name, text, tags = TV_TAGS, amazon }) {
 </div>`
 }
 
-const downabitCard = appCard({ href: '/downabit/', icon: '/assets/downabit-icon-256.png', name: 'Downabit', amazon: DOWNABIT.amazon,
+const downabitCard = appCard({ href: '/downabit/', icon: '/assets/downabit-icon-256.png', name: 'Downabit', access: 'Works with TalkBack; text follows the size set on your TV; sign in by scanning a code.', amazon: DOWNABIT.amazon,
   text: "Your family's photos and videos, from your private Telegram channel to the TV, a USB drive, your NAS or the cloud." })
-const downabitPlayerCard = appCard({ href: '/downabit-player/', icon: '/assets/downabitplayer-icon-256.png', name: 'Downabit Player', amazon: DOWNABIT_PLAYER.amazon,
+const downabitPlayerCard = appCard({ href: '/downabit-player/', icon: '/assets/downabitplayer-icon-256.png', name: 'Downabit Player', access: 'Works with TalkBack; text follows the size set on your TV.', amazon: DOWNABIT_PLAYER.amazon,
   text: 'The videos and music in your Telegram chats, channels and groups, streamed to the TV as they play.' })
-const fiveDiceCard = appCard({ href: '/five-dice/', icon: '/assets/fivedice-icon-256.png', name: 'Five Dice', amazon: FIVE_DICE.amazon,
+const fiveDiceCard = appCard({ href: '/five-dice/', icon: '/assets/fivedice-icon-256.png', name: 'Five Dice', access: 'Reads itself aloud, or only the dice; high contrast; numbers on the dice.', amazon: FIVE_DICE.amazon,
   text: 'The classic dice game, you against the computer, played with the remote. Accessible for blind and low-vision players.' })
-const paintMazeCard = appCard({ href: '/paint-maze/', icon: '/assets/paintmaze-icon-256.png', name: 'Paint Maze', amazon: PAINT_MAZE.amazon,
+const paintMazeCard = appCard({ href: '/paint-maze/', icon: '/assets/paintmaze-icon-256.png', name: 'Paint Maze', access: 'Played by ear: it says what was painted and which ways the ball can roll; high contrast.', amazon: PAINT_MAZE.amazon,
   text: 'Roll the ball with the remote and paint every square of the maze. 1,200 levels, and it can be played by ear.' })
-const solitaireCard = appCard({ href: '/solitaire/', icon: '/assets/solitaire-icon-256.png', name: 'Solitaire', amazon: SOLITAIRE.amazon,
+const solitaireCard = appCard({ href: '/solitaire/', icon: '/assets/solitaire-icon-256.png', name: 'Solitaire', access: 'Reads itself aloud, or only the cards; high contrast; four-colour deck; big cards.', amazon: SOLITAIRE.amazon,
   text: 'Classic Klondike patience, Draw 1 or Draw 3, played with the remote. Accessible for blind and low-vision players.' })
-const backgammonCard = appCard({ href: '/backgammon/', icon: '/assets/backgammon-icon-256.png', name: 'Backgammon', amazon: BACKGAMMON.amazon,
+const backgammonCard = appCard({ href: '/backgammon/', icon: '/assets/backgammon-icon-256.png', name: 'Backgammon', access: 'Followed by ear; numbers on every point; bigger checkers; high contrast.', amazon: BACKGAMMON.amazon,
   text: 'The classic board game against the computer at three levels, played with the remote. It can be followed by ear.' })
-const radioCard = appCard({ href: '/radio/', icon: '/assets/shmerlingradio-icon-256.png', name: 'Shmerling Radio', amazon: RADIO.amazon,
+const radioCard = appCard({ href: '/radio/', icon: '/assets/shmerlingradio-icon-256.png', name: 'Shmerling Radio', access: 'Works with TalkBack; text follows the size set on your TV.', amazon: RADIO.amazon,
   tags: [...TV_TAGS, 'Android'],
   text: 'Radio stations from all over the world on the TV and the phone. Browse by country, genre or language, keep favourites, no account.' })
 
@@ -312,21 +318,45 @@ const moreApps = (...cards) => `
 </section>`
 
 page('', {
-  title: 'Shmerling Apps | Apps for the big screen',
-  description: 'Small, careful apps for Android TV, Google TV and Fire TV. Home of Downabit: your family videos from Telegram to the TV.',
+  title: 'Shmerling Apps | Accessibility for the big screen',
+  description: 'TV apps and games you can read, hear and enjoy from the sofa: big text, high contrast, read aloud and a simple remote, for people with low vision and anyone who finds the TV hard to read.',
   nav: 'home',
   jsonLd: { '@context': 'https://schema.org', '@graph': [ORG, { '@type': 'WebSite', name: SITE.name, url: SITE.url + '/', publisher: { '@id': ORG['@id'] } }] },
   body: `
 <section class="hero">
   <div class="container">
-    <span class="eyebrow">Apps for the big screen</span>
-    <h1 class="gradient-text">Made for the remote.<br>Respectful of your files.</h1>
-    <p class="lead">Shmerling Apps builds small, careful apps and games for Android TV, Google TV and Fire TV. No ad networks, no tracking, and every screen says what will happen before it happens.</p>
-    <div class="btn-row"><a class="btn btn-play" href="/apps/">See our apps ${ICON.arrow}</a><a class="btn btn-glass" href="mailto:${SITE.email}">${ICON.mail} Contact us</a></div>
+    <span class="eyebrow">Accessibility for the big screen</span>
+    <h1 class="gradient-text">Bridging the distance.</h1>
+    <p class="lead">TV apps and games you can read, hear and enjoy from the sofa. Made for a simple remote, for people with low vision, older viewers and anyone who finds the screen hard to read from across the room.</p>
+    <div class="btn-row"><a class="btn btn-play" href="#apps">See the apps ${ICON.arrow}</a><a class="btn btn-glass" href="/my-story/">My story</a></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:20px">
+  <div class="container narrow">
+    <div class="glass prose-block reveal">
+      <h2>Why these apps</h2>
+      <p>Reading a TV from across the room is hard when your eyes are not good: small text, low contrast, and menus where you lose track of where you are. I was born with severe low vision, and in recent years I can hardly see the screen. So I build TV apps and games around the way I watch, and they work for anyone who finds the TV hard to see.</p>
+      <p><a href="/my-story/">Read my story ${ICON.arrow}</a></p>
+    </div>
   </div>
 </section>
 
 <section class="section">
+  <div class="container">
+    <div class="section-head reveal"><h2>How our apps are built</h2><p>For eyes that find the TV hard to read, and for ears when the eyes are tired.</p></div>
+    <div class="features">
+      <div class="glass feature reveal"><div class="ico">${ICON.bigText}</div><h3>Big, readable text</h3><p>Large letters on every screen, and the text follows the size set on your TV.</p></div>
+      <div class="glass feature reveal"><div class="ico">${ICON.contrast}</div><h3>Colours and contrast</h3><p>Strong colours on dark backgrounds. The games have a high-contrast mode: black and white with yellow and cyan.</p></div>
+      <div class="glass feature reveal"><div class="ico">${ICON.focus}</div><h3>Clear outlines</h3><p>A bold outline shows where you are on the screen, so you never lose your place.</p></div>
+      <div class="glass feature reveal"><div class="ico">${ICON.speaker}</div><h3>Read aloud</h3><p>The games read themselves aloud: everything, or only what you need, such as only the dice or only the cards. Every app works with TalkBack.</p></div>
+      <div class="glass feature reveal"><div class="ico">${ICON.remote}</div><h3>A simple remote</h3><p>Short lists, big buttons, codes you scan with your phone and very little typing.</p></div>
+      <div class="glass feature reveal"><div class="ico">${ICON.shield}</div><h3>No ad networks, no tracking</h3><p>Our apps do not send your data to us, because we do not want it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="apps">
   <div class="container">
     <div class="section-head reveal"><h2>Our apps</h2><p>Each one does one job well, on the biggest screen in the house.</p></div>
     <div class="apps-grid">${downabitCard}${downabitPlayerCard}${fiveDiceCard}${paintMazeCard}${solitaireCard}${backgammonCard}${radioCard}</div>
@@ -334,12 +364,11 @@ page('', {
 </section>
 
 <section class="section">
-  <div class="container">
-    <div class="section-head reveal"><h2>How we build</h2></div>
-    <div class="features">
-      <div class="glass feature reveal"><div class="ico">${ICON.shield}</div><h3>Your data stays yours</h3><p>No ad networks, no tracking, no analytics. Our apps do not send your data to us, because we do not want it.</p></div>
-      <div class="glass feature reveal"><div class="ico">${ICON.remote}</div><h3>Made for the remote</h3><p>Short lists, big buttons, codes you scan with your phone and very little typing.</p></div>
-      <div class="glass feature reveal"><div class="ico">${ICON.text}</div><h3>Plain language</h3><p>Clear words instead of error codes, in 30 languages, with right-to-left support.</p></div>
+  <div class="container narrow">
+    <div class="glass prose-block reveal" style="text-align:center">
+      <h2>Help the apps grow</h2>
+      <p>Try them, send feedback, and if they help you, buy Pro or subscribe in the store. That keeps the development going.</p>
+      <div class="btn-row" style="justify-content:center"><a class="btn btn-glass" href="mailto:${SITE.email}">${ICON.mail} Send feedback</a><a class="btn btn-glass" href="/my-story/">My story</a></div>
     </div>
   </div>
 </section>`,
@@ -446,6 +475,16 @@ page('downabit/', {
         <div><dt>Languages</dt><dd>30, including right-to-left</dd></div>
         <div><dt>Ads and tracking</dt><dd>None</dd></div>
       </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow">
+    <div class="glass prose-block reveal">
+      <span class="eyebrow">Accessibility</span>
+      <h2>Made for the remote and for tired eyes</h2>
+      <p>Downabit works with TalkBack: its buttons and icons describe themselves. Text follows the size set on your TV, the focused item always has a bold outline, and you sign in by scanning a code with your phone instead of typing on the TV.</p>
     </div>
   </div>
 </section>
@@ -785,6 +824,7 @@ buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, 
 buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, more: moreApps(downabitCard, fiveDiceCard, paintMazeCard, solitaireCard, backgammonCard, radioCard) })
 buildSolitaire({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard, paintMazeCard, backgammonCard, radioCard) })
 buildRadio({ page, doc, mail, ICON, SITE, ORG, svg, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard, paintMazeCard, solitaireCard, backgammonCard) })
+buildStory({ page, mail, ICON, SITE, ORG })
 buildBackgammon({ page, doc, mail, ICON, SITE, ORG, more: moreApps(downabitCard, downabitPlayerCard, fiveDiceCard, paintMazeCard, solitaireCard, radioCard) })
 
 pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>

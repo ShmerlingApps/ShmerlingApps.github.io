@@ -60,6 +60,7 @@ export function buildSolitaire({ page, doc, mail, ICON, SITE, ORG, more = '' }) 
 <section class="section">
   <div class="container narrow">
     <div class="glass prose-block reveal">
+      <span class="eyebrow">Accessibility</span>
       <h2>For every player</h2>
       <p>Solitaire works with TalkBack: every pile describes itself, and every move and every card that turns over is announced. Without a screen reader, the game can read itself aloud. High contrast turns the table black with white cards, a four-colour deck gives diamonds and clubs their own colours, big cards make every card larger, and the game follows the text size set on your TV.</p>
     </div>

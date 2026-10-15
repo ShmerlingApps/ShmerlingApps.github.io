@@ -59,6 +59,7 @@ export function buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more = '' }) 
 <section class="section">
   <div class="container narrow">
     <div class="glass prose-block reveal">
+      <span class="eyebrow">Accessibility</span>
       <h2>For every player</h2>
       <p>Paint Maze can read itself aloud: after every roll it says what was painted, how much is left and which ways the ball can roll, so the maze can be played by ear. It works with TalkBack too. High contrast makes the walls black and the floor pure white, and a dot can mark every square that still needs paint.</p>
       <div class="shot" style="margin-top:18px">${shot('accessibility', 'The Accessibility panel: read aloud, high contrast and marks on unpainted squares')}</div>

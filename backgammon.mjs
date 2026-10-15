@@ -60,6 +60,7 @@ export function buildBackgammon({ page, doc, mail, ICON, SITE, ORG, more = '' })
 <section class="section">
   <div class="container narrow">
     <div class="glass prose-block reveal">
+      <span class="eyebrow">Accessibility</span>
       <h2>For every player</h2>
       <p>Backgammon works with TalkBack: every point, checker and roll describes itself, and every move, the computer's too, is said in the board's own point numbers, so a game can be followed by ear. Without a screen reader, the game can read itself aloud. High contrast makes the board black with white and yellow checkers, numbers can be shown on all 24 points, the checkers can be made bigger, and the game follows the text size set on your TV.</p>
     </div>
