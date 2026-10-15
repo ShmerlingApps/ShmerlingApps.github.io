@@ -76,7 +76,7 @@ const ICON = {
   storeBag: svg('<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>'),
   mail: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>'),
 }
-const BRAND_MARK = `<svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b8ff0"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#bm)"/><path d="M21 11.2c-.9-1.5-2.7-2.4-4.8-2.4-2.8 0-4.8 1.5-4.8 3.6 0 4.7 9.9 2.6 9.9 7.4 0 2.2-2.1 3.8-5 3.8-2.3 0-4.2-1-5.2-2.7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>`
+const BRAND_MARK = `<img class="brand-mark" src="/assets/shmerling-dragon.svg" alt="" width="30" height="30">`
 
 const storeButtons = (extra = '') => `<div class="btn-row"${extra}>
   ${DOWNABIT.play ? `<a class="btn btn-play" href="${DOWNABIT.play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span></a>` : ''}
@@ -138,7 +138,16 @@ const NAV_APPS = [
   ['/backgammon/', 'backgammon', '/assets/backgammon-icon-256.png', 'Backgammon', 'The classic board game'],
 ]
 
-function layout({ path, title, description, nav, sub, app = 'downabit', body, jsonLd, image = '/assets/og-image.jpg' }) {
+// The picture a shared link shows: the dragon for the site's own pages, the app's card on every page of an app.
+const OG_IMAGES = {
+  home: 'home', apps: 'apps', story: 'story', accessibility: 'home',
+  downabit: 'downabit', guides: 'downabit', support: 'downabit',
+  downabitplayer: 'downabitplayer', radio: 'radio',
+  fivedice: 'fivedice', paintmaze: 'paintmaze', solitaire: 'solitaire', backgammon: 'backgammon',
+}
+
+function layout({ path, title, description, nav, sub, app = 'downabit', body, jsonLd, image }) {
+  image = image || `/assets/og/${OG_IMAGES[nav] || 'home'}.jpg`
   const canonical = SITE.url + '/' + path
   const navItem = (href, label, key) => `<a href="${href}"${nav === key ? ' aria-current="page"' : ''}>${label}</a>`
   const appsCurrent = nav === 'apps' || nav === 'guides' || nav === 'support' || NAV_APPS.some(([, key]) => key === nav)
@@ -164,10 +173,13 @@ function layout({ path, title, description, nav, sub, app = 'downabit', body, js
 <meta property="og:image" content="${SITE.url}${image}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="${esc(title)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${SITE.url}${image}">
+<link rel="icon" type="image/svg+xml" href="/assets/shmerling-dragon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -261,7 +273,7 @@ function page(path, opts) {
   sitemap.push(SITE.url + '/' + path)
 }
 
-const ORG = { '@type': 'Organization', '@id': SITE.url + '/#org', name: SITE.name, url: SITE.url + '/', email: SITE.email, logo: SITE.url + '/assets/apple-touch-icon.png' }
+const ORG = { '@type': 'Organization', '@id': SITE.url + '/#org', name: SITE.name, url: SITE.url + '/', email: SITE.email, logo: SITE.url + '/assets/shmerling-icon-512.png' }
 
 // ---- Home -------------------------------------------------------------------------------------------------------------
 // Every app card: Learn more, plus the Amazon Appstore button once the app is live there. Such a card is a box with
