@@ -341,7 +341,7 @@ page('', {
   <div class="container narrow">
     <div class="glass prose-block reveal">
       <h2>Why these apps</h2>
-      <p>Reading a TV from across the room is hard when your eyes are not good: small text, low contrast, and menus where you lose track of where you are. I was born with severe low vision, and in recent years I can hardly see the screen. So I build TV apps and games around the way I watch, and they work for anyone who finds the TV hard to see.</p>
+      <p>Reading a TV from across the room is hard when your eyes are not good: small text, low contrast, and menus where you lose track of where you are. I was born with severe low vision, and in recent years I can hardly see the screen. So I've decided to build apps about it, and games too, made around the way I watch, for anyone who finds the TV hard to see.</p>
       <p><a href="/my-story/">Read my story ${ICON.arrow}</a></p>
     </div>
   </div>
