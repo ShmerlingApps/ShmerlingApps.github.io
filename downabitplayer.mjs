@@ -105,7 +105,7 @@ export function buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, mor
     <div class="glass prose-block reveal">
       <span class="eyebrow">Accessibility</span>
       <h2>Made for the remote and for tired eyes</h2>
-      <p>Downabit Player works with TalkBack: its buttons and icons describe themselves. Text follows the size set on your TV and the focused item always has a bold outline.</p>
+      <p>Downabit Player works with TalkBack: its buttons and icons describe themselves. Without a screen reader, it can read itself aloud (Settings &gt; Accessibility): everything the remote lands on, or only the names of films and songs. Text follows the size set on your TV and the focused item always has a bold outline. No typing on the TV: every text box shows a code, so you scan it and type on your phone.</p>
       <h2>Music too</h2>
       <p>Songs play with previous and next, shuffle and repeat. The playlist is the chat the song came from, or your search results.</p>
       <h2>The same list on every TV</h2>
@@ -215,6 +215,8 @@ ${[
   qa('Can it play music?', 'Yes. Songs play with previous and next, shuffle and repeat. The playlist is the chat the song came from, or your search results.'),
   qa('Can I have the same list on two TVs?', 'Yes, with Google sync in Settings. Sign in with Google on each TV by scanning the code with your phone; Recently watched and Favourites are kept in one file in your own Google Drive. The <a href="/downabit-player/privacy/">privacy policy</a> says what the file holds.'),
   qa('Can I play a film in VLC or MX Player?', 'Yes. Downabit Player can hand a film to VLC or MX Player.'),
+  qa('Can I use it without reading the screen?', 'Yes. Downabit Player works with TalkBack. Without it, go to Settings &gt; Accessibility &gt; Read aloud and choose Read everything (menus, buttons, films, songs and the player) or Read only file names. While TalkBack is on, the app stays quiet, so you never hear two voices.'),
+  qa('Can I type without the TV keyboard?', 'Yes. Every text box shows a code next to it. Scan it with your phone (on the same Wi-Fi as the TV), type there and send: the text appears on the TV, ready to save.'),
   qa('Which languages does the app speak?', 'English and Hebrew.'),
   qa('How much does it cost?', '$2.99 a month, starting with a 7-day free trial, or $29.99 a year, through Google Play or the Amazon Appstore. The subscription renews until you cancel it.'),
   qa('I subscribed but the app still shows the plans.', 'The subscription comes from the store account the TV uses. Make sure the TV is signed in to the same Google or Amazon account you subscribed with, then open Downabit Player again.'),

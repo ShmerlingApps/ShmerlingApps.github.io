@@ -2,7 +2,7 @@
 // Store links are added once the app is live in each store; until then the pages say "coming soon".
 
 export const FIVE_DICE = {
-  play: '',   // https://play.google.com/store/apps/details?id=app.shmerling.fivedice once it is published
+  play: 'https://play.google.com/store/apps/details?id=app.shmerling.fivedice', // live on Google Play since 22 Oct 2026
   amazon: 'https://www.amazon.com/dp/B0HLGFQPCC', // live on the Amazon Appstore (ASIN B0HLGFQPCC)
   googlePrivacy: 'https://policies.google.com/privacy',
   amazonPrivacy: 'https://www.amazon.com/privacy',

@@ -280,9 +280,9 @@ const ORG = { '@type': 'Organization', '@id': SITE.url + '/#org', name: SITE.nam
 // Every app card: Learn more, plus the Amazon Appstore button once the app is live there. Such a card is a box with
 // two links, not one big link (a link cannot hold another link).
 const TV_TAGS = ['Android TV', 'Google TV', 'Fire TV']
-function appCard({ href, icon, name, text, access, tags = TV_TAGS, amazon }) {
+function appCard({ href, icon, name, text, access, tags = TV_TAGS, amazon, play }) {
   const tagRow = `${access ? `<p class="access">${ICON.speaker}<span>${access}</span></p>` : ''}<div class="tags">${tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>`
-  if (!amazon) {
+  if (!amazon && !play) {
     return `
 <a class="glass app-card reveal" href="${href}">
   <img src="${icon}" alt="" width="64" height="64">
@@ -300,16 +300,17 @@ function appCard({ href, icon, name, text, access, tags = TV_TAGS, amazon }) {
   ${tagRow}
   <div class="card-actions">
     <a class="btn btn-glass" href="${href}">Learn more<span class="sr-only"> about ${name}</span> ${ICON.arrow}</a>
-    <a class="btn btn-amazon" href="${amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span><span class="sr-only"> - ${name}</span></a>
+    ${play ? `<a class="btn btn-play" href="${play}" rel="noopener">${ICON.storePlay}<span class="two"><small>GET IT ON</small>Google Play</span><span class="sr-only"> - ${name}</span></a>` : ''}
+    ${amazon ? `<a class="btn btn-amazon" href="${amazon}" rel="noopener">${ICON.storeBag}<span class="two"><small>AVAILABLE AT</small>Amazon Appstore</span><span class="sr-only"> - ${name}</span></a>` : ''}
   </div>
 </div>`
 }
 
-const downabitCard = appCard({ href: '/downabit/', icon: '/assets/downabit-icon-256.png', name: 'Downabit', access: 'Works with TalkBack; text follows the size set on your TV; sign in by scanning a code.', amazon: DOWNABIT.amazon,
+const downabitCard = appCard({ href: '/downabit/', icon: '/assets/downabit-icon-256.png', name: 'Downabit', access: 'Reads itself aloud, or only file names; works with TalkBack; type on your phone instead of the TV.', amazon: DOWNABIT.amazon,
   text: "Your family's photos and videos, from your private Telegram channel to the TV, a USB drive, your NAS or the cloud." })
-const downabitPlayerCard = appCard({ href: '/downabit-player/', icon: '/assets/downabitplayer-icon-256.png', name: 'Downabit Player', access: 'Works with TalkBack; text follows the size set on your TV.', amazon: DOWNABIT_PLAYER.amazon,
+const downabitPlayerCard = appCard({ href: '/downabit-player/', icon: '/assets/downabitplayer-icon-256.png', name: 'Downabit Player', access: 'Reads itself aloud, or only the names of films and songs; works with TalkBack; type on your phone.', amazon: DOWNABIT_PLAYER.amazon,
   text: 'The videos and music in your Telegram chats, channels and groups, streamed to the TV as they play.' })
-const fiveDiceCard = appCard({ href: '/five-dice/', icon: '/assets/fivedice-icon-256.png', name: 'Five Dice', access: 'Reads itself aloud, or only the dice; high contrast; numbers on the dice.', amazon: FIVE_DICE.amazon,
+const fiveDiceCard = appCard({ href: '/five-dice/', icon: '/assets/fivedice-icon-256.png', name: 'Five Dice', access: 'Reads itself aloud, or only the dice; high contrast; numbers on the dice.', amazon: FIVE_DICE.amazon, play: FIVE_DICE.play,
   text: 'The classic dice game, you against the computer, played with the remote. Accessible for blind and low-vision players.' })
 const paintMazeCard = appCard({ href: '/paint-maze/', icon: '/assets/paintmaze-icon-256.png', name: 'Paint Maze', access: 'Played by ear: it says what was painted and which ways the ball can roll; high contrast.', amazon: PAINT_MAZE.amazon,
   text: 'Roll the ball with the remote and paint every square of the maze. 1,200 levels, and it can be played by ear.' })
@@ -317,7 +318,7 @@ const solitaireCard = appCard({ href: '/solitaire/', icon: '/assets/solitaire-ic
   text: 'Classic Klondike patience, Draw 1 or Draw 3, played with the remote. Accessible for blind and low-vision players.' })
 const backgammonCard = appCard({ href: '/backgammon/', icon: '/assets/backgammon-icon-256.png', name: 'Backgammon', access: 'Followed by ear; numbers on every point; bigger checkers; high contrast.', amazon: BACKGAMMON.amazon,
   text: 'The classic board game against the computer at three levels, played with the remote. It can be followed by ear.' })
-const radioCard = appCard({ href: '/radio/', icon: '/assets/shmerlingradio-icon-256.png', name: 'Shmerling Radio', access: 'Works with TalkBack; text follows the size set on your TV.', amazon: RADIO.amazon,
+const radioCard = appCard({ href: '/radio/', icon: '/assets/shmerlingradio-icon-256.png', name: 'Shmerling Radio', access: 'Reads itself aloud, or only station names; works with TalkBack; search by typing on your phone.', amazon: RADIO.amazon,
   tags: [...TV_TAGS, 'Android'],
   text: 'Radio stations from all over the world on the TV and the phone. Browse by country, genre or language, keep favourites, no account.' })
 
@@ -374,8 +375,8 @@ page('', {
       <div class="glass feature reveal"><div class="ico">${ICON.bigText}</div><h3>Big, readable text</h3><p>Large letters on every screen, and the text follows the size set on your TV.</p></div>
       <div class="glass feature reveal"><div class="ico">${ICON.contrast}</div><h3>Colours and contrast</h3><p>Strong colours on dark backgrounds. The games have a high-contrast mode: black and white with yellow and cyan.</p></div>
       <div class="glass feature reveal"><div class="ico">${ICON.focus}</div><h3>Clear outlines</h3><p>A bold outline shows where you are on the screen, so you never lose your place.</p></div>
-      <div class="glass feature reveal"><div class="ico">${ICON.speaker}</div><h3>Read aloud</h3><p>The games read themselves aloud: everything, or only what you need, such as only the dice or only the cards. Every app works with TalkBack.</p></div>
-      <div class="glass feature reveal"><div class="ico">${ICON.remote}</div><h3>A simple remote</h3><p>Short lists, big buttons, codes you scan with your phone and very little typing.</p></div>
+      <div class="glass feature reveal"><div class="ico">${ICON.speaker}</div><h3>Read aloud</h3><p>Every app and game can read itself aloud: everything, or only what you need, such as only the dice, the cards, the file names or the station names. Every app works with TalkBack.</p></div>
+      <div class="glass feature reveal"><div class="ico">${ICON.remote}</div><h3>A simple remote</h3><p>Short lists, big buttons and no typing on the TV: scan the code next to a text box and type on your phone.</p></div>
       <div class="glass feature reveal"><div class="ico">${ICON.shield}</div><h3>No ad networks, no tracking</h3><p>Our apps do not send your data to us, because we do not want it.</p></div>
     </div>
   </div>
@@ -502,7 +503,7 @@ page('downabit/', {
     <div class="glass prose-block reveal">
       <span class="eyebrow">Accessibility</span>
       <h2>Made for the remote and for tired eyes</h2>
-      <p>Downabit works with TalkBack: its buttons and icons describe themselves. Text follows the size set on your TV, the focused item always has a bold outline, and you sign in by scanning a code with your phone instead of typing on the TV.</p>
+      <p>Downabit works with TalkBack: its buttons and icons describe themselves. Without a screen reader, it can read itself aloud (Settings &gt; Accessibility): everything the remote lands on, or only the names of your files. Text follows the size set on your TV, the focused item always has a bold outline, and you sign in by scanning a code with your phone instead of typing on the TV. Every text box shows a code too: scan it and type on your phone, and the text appears on the TV.</p>
     </div>
   </div>
 </section>
@@ -755,6 +756,12 @@ ${qa('A file will not open', 'Videos, music and pictures play inside Downabit. O
 <div class="faq">
 ${qa('How do I cancel or change my plan?', `Subscriptions are managed by the store you bought from: <a href="${DOWNABIT.playSubscriptions}">Google Play subscriptions</a> or <a href="${DOWNABIT.amazonSubscriptions}">Amazon subscriptions</a>. See <a href="/downabit/subscribe/">Subscription</a> for details.`)}
 ${qa('I subscribed but Downabit still shows the plans', 'Choose "Restore / check again" on the plan screen. Make sure the TV is signed in to the same Google or Amazon account you subscribed with.')}
+</div>
+
+<h2>Accessibility</h2>
+<div class="faq">
+${qa('Can I use Downabit without reading the screen?', 'Yes. Downabit works with TalkBack. Without it, go to Settings &gt; Accessibility &gt; Read aloud and choose Read everything (menus, buttons, files and what you do) or Read only file names. While TalkBack is on, Downabit stays quiet, so you never hear two voices.')}
+${qa('Can I type without the TV keyboard?', 'Yes. Every text box shows a code next to it. Scan it with your phone (on the same Wi-Fi as the TV), type there and send: the text appears on the TV, ready to save.')}
 </div>
 
 <h2>Devices</h2>

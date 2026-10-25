@@ -115,7 +115,7 @@ export function buildRadio({ page, doc, mail, ICON, SITE, ORG, svg, more = '' })
     <div class="glass prose-block reveal">
       <span class="eyebrow">Accessibility</span>
       <h2>Made for the remote and for tired eyes</h2>
-      <p>Shmerling Radio works with TalkBack: its buttons and icons describe themselves. Text follows the size set on your TV or phone, and on the TV the focused item always has a bold outline.</p>
+      <p>Shmerling Radio works with TalkBack: its buttons and icons describe themselves. Without a screen reader, it can read itself aloud (Settings &gt; Accessibility): everything the remote lands on, or only the names of the stations. Text follows the size set on your TV or phone, and on the TV the focused item always has a bold outline. To search on the TV, scan the code next to the search box and type on your phone; on a phone, long station names scroll so you can read them whole.</p>
       <h2>The same lists on every device</h2>
       <p>With Pro you can have your favourites, history and songs on every device signed in to the same Google account. Sign in with Google by scanning a code with your phone; the lists are kept in one file in your own Google Drive. It is optional.</p>
       <h2>A station the directory does not have</h2>
@@ -216,6 +216,8 @@ ${[
   qa('Can I add a station that is not in the list?', 'Yes, with Pro: My radio &gt; Add a station by its address. Type a name and the web address of the stream.'),
   qa('Can I have the same favourites on two devices?', 'Yes, with Pro and Google sync in Settings. Sign in with Google on each device by scanning the code with your phone; your lists are kept in one file in your own Google Drive. The <a href="/radio/privacy/">privacy policy</a> says what the file holds.'),
   qa('What are "Songs I heard"?', 'With Pro, the app keeps the titles the stations announce while you listen. Choose one to search for it on the web.'),
+  qa('Can I use it without reading the screen?', 'Yes. Shmerling Radio works with TalkBack. Without it, go to Settings &gt; Accessibility &gt; Read aloud on the TV and choose Read everything (menus, buttons, stations and the player) or Read only station names. While TalkBack is on, the app stays quiet, so you never hear two voices.'),
+  qa('Can I search without the TV keyboard?', 'Yes. On the TV, the search box and Add a station show a code. Scan it with your phone (on the same Wi-Fi as the TV), type there and send: the text appears on the TV.'),
   qa('How much does Pro cost?', 'The price is shown in Google Play or the Amazon Appstore. It is a monthly or yearly subscription that starts with a 7-day free trial and renews until you cancel it.'),
   qa('I subscribed but the app still says Free.', 'The subscription comes from the store account the device uses. Make sure the device is signed in to the same Google or Amazon account you subscribed with, then open Shmerling Radio again.'),
 ].join('\n')}
