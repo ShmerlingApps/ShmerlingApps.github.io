@@ -71,8 +71,8 @@ export function buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more = '' }) 
   <div class="container">
     <div class="glass plan-card reveal">
       <span class="eyebrow">Paint Maze Pro</span>
-      <div class="trial gradient-text">One purchase</div>
-      <p>Paint Maze is free to play: all 300 Easy levels. Now and then a short card between levels shows our other apps, and it can be skipped after five seconds. Paint Maze Pro, bought once in Google Play or the Amazon Appstore, removes the cards and opens Normal, Hard and Expert.</p>
+      <div class="trial gradient-text">From $2 a month</div>
+      <p>Paint Maze is free to play: all 300 Easy levels. Every few levels a short card shows our other apps and my story, and it can be skipped after five seconds. Paint Maze Pro is monthly support in Google Play or the Amazon Appstore, at three levels: Bronze $2, Silver $5 or Gold $10 a month. Each one removes the cards and opens Normal, Hard and Expert.</p>
       <div class="plan-points"><span class="tag">No cards between levels</span><span class="tag">All 900 Normal, Hard and Expert levels</span><span class="tag">Rainbow paint</span></div>
     </div>
   </div>
@@ -82,7 +82,7 @@ export function buildPaintMaze({ page, doc, mail, ICON, SITE, ORG, more = '' }) 
   <div class="container narrow">
     <dl class="facts glass prose-block reveal">
       <div><dt>Devices</dt><dd>Android TV &amp; Google TV (Android 7.0+), Fire TV (Fire OS 5+)</dd></div>
-      <div><dt>Price</dt><dd>Free; Paint Maze Pro is a one-time purchase</dd></div>
+      <div><dt>Price</dt><dd>Free; Paint Maze Pro is monthly support from $2 a month</dd></div>
       <div><dt>Levels</dt><dd>1,200: Easy, Normal, Hard and Expert, 300 each</dd></div>
       <div><dt>Tracking</dt><dd>None. <a href="/paint-maze/privacy/">Privacy policy</a></dd></div>
     </dl>
@@ -107,10 +107,10 @@ ${more}`,
 <p>The game keeps your progress (the levels you painted and your best moves) and your settings (difficulty, sound, your ball, accessibility choices) on the TV. Android's own backup may include them in your device backup if backup is switched on for your TV; that backup is handled by your device and its maker, not by us.</p>
 
 <h2>2. Purchases</h2>
-<p>Paint Maze Pro is sold by Google Play or the Amazon Appstore. The store handles the payment; we never receive your payment details. The game only asks the store whether you own Paint Maze Pro. See the <a href="${PAINT_MAZE.googlePrivacy}" rel="noopener">Google</a> and <a href="${PAINT_MAZE.amazonPrivacy}" rel="noopener">Amazon</a> privacy policies.</p>
+<p>Paint Maze Pro is sold by Google Play or the Amazon Appstore. The store handles the payment; we never receive your payment details. The game only asks the store whether you have Paint Maze Pro: a support level, or Pro bought before. You can cancel a support level at any time in the store's subscriptions page. See the <a href="${PAINT_MAZE.googlePrivacy}" rel="noopener">Google</a> and <a href="${PAINT_MAZE.amazonPrivacy}" rel="noopener">Amazon</a> privacy policies.</p>
 
 <h2>3. The cards between levels</h2>
-<p>Without Paint Maze Pro, a card between levels now and then shows another app of ours or Paint Maze Pro. The cards are part of the game: no advertising network is involved and nothing about you is sent anywhere to show them. If you choose "See it in the store", the store app opens.</p>
+<p>Without Paint Maze Pro, a short card every few levels shows another app of ours or Paint Maze Pro, with a few words about who makes these apps. The cards are part of the game: no advertising network is involved and nothing about you is sent anywhere to show them. If you choose "See it in the store", the store app opens.</p>
 
 <h2>4. Speech</h2>
 <p>"Read aloud" uses the text-to-speech engine installed on your TV. What the game says is spoken by that engine on the TV.</p>
@@ -145,7 +145,7 @@ ${more}`,
 <div class="faq">
 ${[
   qa('How do I play?', 'Press an arrow on the remote: the ball rolls that way until it hits a wall, painting every square it passes. Paint all the white squares to finish the level. OK takes back a move, BACK pauses. Finish within par for three stars.'),
-  qa('What does Paint Maze Pro add?', 'No cards between levels, all 900 Normal, Hard and Expert levels (Easy is free), and the rainbow paint for your ball. It is a one-time purchase.'),
+  qa('What does Paint Maze Pro add?', 'No cards between levels, all 900 Normal, Hard and Expert levels (Easy is free), and the rainbow paint for your ball. It is monthly support: Bronze $2, Silver $5 or Gold $10 a month, and each one gives you all of it. Bought Pro before? You keep it.'),
   qa('I bought Pro but the game does not show it.', 'Pro comes from the store account the TV uses. Make sure the TV is signed in with the account that bought it, then open the game again: it asks the store each time. It also comes back by itself after a reinstall or on another TV with the same account.'),
   qa('Is every level possible?', 'Yes. Every maze is built by rolling a ball through it, so every level can be painted, and par is the number of moves it was built with.'),
   qa('Can blind or low-vision players play?', 'Yes. Switch on Read aloud in Accessibility (or use TalkBack): after every roll the game says what was painted, what is left and which ways the ball can roll. High contrast and the marks on unpainted squares help low vision.'),

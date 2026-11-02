@@ -72,9 +72,9 @@ export function buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more = '' }) {
   <div class="container">
     <div class="glass plan-card reveal">
       <span class="eyebrow">Five Dice Pro</span>
-      <div class="trial gradient-text">One purchase</div>
-      <p>Five Dice is free to play. Now and then a short card between games shows our other apps, and it can be skipped after five seconds. Five Dice Pro, bought once in Google Play or the Amazon Appstore, removes the cards and adds the rest.</p>
-      <div class="plan-points"><span class="tag">No cards between games</span><span class="tag">Hard computer, unlimited</span><span class="tag">4 tables, 4 dice colours</span><span class="tag">Statistics</span></div>
+      <div class="trial gradient-text">From $2 a month</div>
+      <p>Five Dice is free to play. A few times a game a short card shows our other apps and my story, and it can be skipped after five seconds. Five Dice Pro is monthly support in Google Play or the Amazon Appstore, at three levels: Bronze $2, Silver $5 or Gold $10 a month. Each one removes the cards and adds the rest.</p>
+      <div class="plan-points"><span class="tag">No cards during games</span><span class="tag">Normal and Hard, unlimited</span><span class="tag">4 tables, 4 dice colours</span><span class="tag">Statistics</span></div>
       <div class="shot" style="margin-top:18px">${shot('stats', 'Five Dice Pro statistics on the casino red table')}</div>
     </div>
   </div>
@@ -84,7 +84,7 @@ export function buildFiveDice({ page, doc, mail, ICON, SITE, ORG, more = '' }) {
   <div class="container narrow">
     <dl class="facts glass prose-block reveal">
       <div><dt>Devices</dt><dd>Android TV &amp; Google TV (Android 7.0+), Fire TV (Fire OS 5+)</dd></div>
-      <div><dt>Price</dt><dd>Free; Five Dice Pro is a one-time purchase</dd></div>
+      <div><dt>Price</dt><dd>Free; Five Dice Pro is monthly support from $2 a month</dd></div>
       <div><dt>Players</dt><dd>1 player against the computer, three levels</dd></div>
       <div><dt>Tracking</dt><dd>None. <a href="/five-dice/privacy/">Privacy policy</a></dd></div>
     </dl>
@@ -112,10 +112,10 @@ ${more}`,
 <p>If you are signed in to Google Play Games on your TV, the Google Play version keeps a copy of your record as a saved game in your Google account, so a new TV or a reinstall gets it back. The saved game holds only the numbers listed above. It is stored and handled by Google under the <a href="${FIVE_DICE.googlePrivacy}" rel="noopener">Google privacy policy</a>; we cannot see it. You can delete it with your Play Games data (<a href="${FIVE_DICE.playGamesData}" rel="noopener">how</a>). The Amazon version has no such copy.</p>
 
 <h2>3. Purchases</h2>
-<p>Five Dice Pro is sold by Google Play or the Amazon Appstore. The store handles the payment; we never receive your payment details. The game only asks the store whether you own Five Dice Pro. See the <a href="${FIVE_DICE.googlePrivacy}" rel="noopener">Google</a> and <a href="${FIVE_DICE.amazonPrivacy}" rel="noopener">Amazon</a> privacy policies.</p>
+<p>Five Dice Pro is sold by Google Play or the Amazon Appstore. The store handles the payment; we never receive your payment details. The game only asks the store whether you have Five Dice Pro: a support level, or Pro bought before. You can cancel a support level at any time in the store's subscriptions page. See the <a href="${FIVE_DICE.googlePrivacy}" rel="noopener">Google</a> and <a href="${FIVE_DICE.amazonPrivacy}" rel="noopener">Amazon</a> privacy policies.</p>
 
-<h2>4. The cards between games</h2>
-<p>Without Five Dice Pro, a card between games now and then shows another app of ours or Five Dice Pro. The cards are part of the game: no advertising network is involved and nothing about you is sent anywhere to show them. If you choose "See it in the store", the store app opens.</p>
+<h2>4. The cards during a game</h2>
+<p>Without Five Dice Pro, two or three short cards during a game show another app of ours or Five Dice Pro, with a few words about who makes these apps. The cards are part of the game: no advertising network is involved and nothing about you is sent anywhere to show them. If you choose "See it in the store", the store app opens.</p>
 
 <h2>5. Speech</h2>
 <p>"Read aloud" uses the text-to-speech engine installed on your TV. What the game says is spoken by that engine on the TV.</p>
@@ -150,9 +150,9 @@ ${more}`,
 <div class="faq">
 ${[
   qa('How do I play?', 'Press OK on Roll. Before the second and third roll, go up to the dice and press OK on each die you want to keep, then roll again. After any roll you can go left to the scorecard and press OK on a box; after the last roll the game moves there for you. Each box is used once, 13 rounds in all. "How to play" in the menu has the full rules.'),
-  qa('What does Five Dice Pro add?', 'No cards between games, the Hard computer as often as you like, four tables and four dice colours, and a statistics page. It is a one-time purchase.'),
+  qa('What does Five Dice Pro add?', 'No cards during games, the Normal and Hard computers as often as you like, four tables and four dice colours, and a statistics page. It is monthly support: Bronze $2, Silver $5 or Gold $10 a month, and each one gives you all of it. Bought Pro before? You keep it.'),
   qa('I bought Pro but the game does not show it.', 'Pro comes from the store account the TV uses. Make sure the TV is signed in with the account that bought it, then open the game again: it asks the store each time. It also comes back by itself after a reinstall or on another TV with the same account.'),
-  qa('Why can I play the Hard computer only once a day?', 'Without Pro, the Hard computer gives one game a day. Easy and Normal can be played as often as you like.'),
+  qa('Why can I play the Normal computer only once a day?', 'Without Pro, the Normal computer gives one game a day and the Hard computer comes with Pro. The Easy computer can be played as often as you like.'),
   qa('Does my record come back after a reinstall?', 'In the Google Play version, yes, when the TV is signed in to Google Play Games. In the Amazon version the record stays on the TV.'),
   qa('Can blind or low-vision players play?', 'Yes. With TalkBack on, every die, box and score is described and each roll is announced. Without TalkBack, switch on Read aloud in Accessibility. High contrast and numbers on the dice help low vision, and the game follows the TV&rsquo;s text size.'),
   qa('Are the dice fair?', 'Yes. Every roll uses the TV&rsquo;s secure random number generator, and each face is exactly as likely as any other.'),

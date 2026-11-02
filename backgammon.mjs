@@ -71,9 +71,9 @@ export function buildBackgammon({ page, doc, mail, ICON, SITE, ORG, more = '' })
   <div class="container">
     <div class="glass plan-card reveal">
       <span class="eyebrow">Backgammon Pro</span>
-      <div class="trial gradient-text">One purchase</div>
-      <p>Backgammon is free to play. Now and then a short card between games shows our other apps, and it can be skipped after five seconds. Backgammon Pro, bought once in Google Play or the Amazon Appstore, removes the cards and adds the rest.</p>
-      <div class="plan-points"><span class="tag">No cards between games</span><span class="tag">Hard computer, unlimited</span><span class="tag">4 boards, 4 checker colours</span><span class="tag">Statistics</span></div>
+      <div class="trial gradient-text">From $2 a month</div>
+      <p>Backgammon is free to play. A few times a game a short card shows our other apps and my story, and it can be skipped after five seconds. Backgammon Pro is monthly support in Google Play or the Amazon Appstore, at three levels: Bronze $2, Silver $5 or Gold $10 a month. Each one removes the cards and adds the rest.</p>
+      <div class="plan-points"><span class="tag">No cards during games</span><span class="tag">Normal and Hard, unlimited</span><span class="tag">4 boards, 4 checker colours</span><span class="tag">Statistics</span></div>
     </div>
   </div>
 </section>
@@ -82,7 +82,7 @@ export function buildBackgammon({ page, doc, mail, ICON, SITE, ORG, more = '' })
   <div class="container narrow">
     <dl class="facts glass prose-block reveal">
       <div><dt>Devices</dt><dd>Android TV &amp; Google TV (Android 7.0+), Fire TV (Fire OS 5+)</dd></div>
-      <div><dt>Price</dt><dd>Free; Backgammon Pro is a one-time purchase</dd></div>
+      <div><dt>Price</dt><dd>Free; Backgammon Pro is monthly support from $2 a month</dd></div>
       <div><dt>Players</dt><dd>1 player against the computer, three levels</dd></div>
       <div><dt>Tracking</dt><dd>None. <a href="/backgammon/privacy/">Privacy policy</a></dd></div>
     </dl>
@@ -110,10 +110,10 @@ ${more}`,
 <p>If you are signed in to Google Play Games on your TV, the Google Play version keeps a copy of your record as a saved game in your Google account, so a new TV or a reinstall gets it back. The saved game holds only the numbers listed above, counted per TV under a random number the game makes up, so that two TVs never count the same game twice. It is stored and handled by Google under the <a href="${BACKGAMMON.googlePrivacy}" rel="noopener">Google privacy policy</a>; we cannot see it. You can delete it with your Play Games data (<a href="${BACKGAMMON.playGamesData}" rel="noopener">how</a>). The Amazon version has no such copy.</p>
 
 <h2>3. Purchases</h2>
-<p>Backgammon Pro is sold by Google Play or the Amazon Appstore. The store handles the payment; we never receive your payment details. The game only asks the store whether you own Backgammon Pro. See the <a href="${BACKGAMMON.googlePrivacy}" rel="noopener">Google</a> and <a href="${BACKGAMMON.amazonPrivacy}" rel="noopener">Amazon</a> privacy policies.</p>
+<p>Backgammon Pro is sold by Google Play or the Amazon Appstore. The store handles the payment; we never receive your payment details. The game only asks the store whether you have Backgammon Pro: a support level, or Pro bought before. You can cancel a support level at any time in the store's subscriptions page. See the <a href="${BACKGAMMON.googlePrivacy}" rel="noopener">Google</a> and <a href="${BACKGAMMON.amazonPrivacy}" rel="noopener">Amazon</a> privacy policies.</p>
 
-<h2>4. The cards between games</h2>
-<p>Without Backgammon Pro, a card between games now and then shows another app of ours or Backgammon Pro. The cards are part of the game: no advertising network is involved and nothing about you is sent anywhere to show them. If you choose "See it in the store", the store app opens.</p>
+<h2>4. The cards during a game</h2>
+<p>Without Backgammon Pro, two or three short cards during a game show another app of ours or Backgammon Pro, with a few words about who makes these apps. The cards are part of the game: no advertising network is involved and nothing about you is sent anywhere to show them. If you choose "See it in the store", the store app opens.</p>
 
 <h2>5. Speech</h2>
 <p>"Read aloud" uses the text-to-speech engine installed on your TV. What the game says is spoken by that engine on the TV.</p>
@@ -148,9 +148,9 @@ ${more}`,
 <div class="faq">
 ${[
   qa('How do I play?', 'Press OK to roll. Left and right go through the checkers that can move; OK picks one up and lights where it can go (with one die, both dice, or off the board). Left and right choose, OK moves it, BACK puts it down. When all dice are used the move is confirmed after a few seconds; Undo, beside the board, takes it back until then. BACK pauses the game, and a game you leave is kept for Continue. "How to play" in the menu has the full rules.'),
-  qa('What does Backgammon Pro add?', 'No cards between games, the Hard computer as often as you like, four boards and four checker colours, and a statistics page (points, gammons, backgammons, streaks, pip lead and your results against each level). It is a one-time purchase.'),
+  qa('What does Backgammon Pro add?', 'No cards during games, the Normal and Hard computers as often as you like, four boards and four checker colours, and a statistics page (points, gammons, backgammons, streaks, pip lead and your results against each level). It is monthly support: Bronze $2, Silver $5 or Gold $10 a month, and each one gives you all of it. Bought Pro before? You keep it.'),
   qa('I bought Pro but the game does not show it.', 'Pro comes from the store account the TV uses. Make sure the TV is signed in with the account that bought it, then open the game again: it asks the store each time. It also comes back by itself after a reinstall or on another TV with the same account.'),
-  qa('Why can I play the Hard computer only once a day?', 'Without Pro, the Hard computer gives one game a day. Easy and Normal can be played as often as you like.'),
+  qa('Why can I play the Normal computer only once a day?', 'Without Pro, the Normal computer gives one game a day and the Hard computer comes with Pro. The Easy computer can be played as often as you like.'),
   qa('Is there a doubling cube?', 'No. Every game is a single game: a win counts 1 point, a gammon 2 and a backgammon 3.'),
   qa('Does my record come back after a reinstall?', 'In the Google Play version, yes, when the TV is signed in to Google Play Games. In the Amazon version the record stays on the TV.'),
   qa('Can blind or low-vision players play?', 'Yes. With TalkBack on, every point, checker and roll is described, and every move, the computer&rsquo;s too, is said in point numbers. Without TalkBack, switch on Read aloud in Accessibility. High contrast, numbers on the points and bigger checkers help low vision, and the game follows the TV&rsquo;s text size.'),

@@ -71,9 +71,9 @@ export function buildSolitaire({ page, doc, mail, ICON, SITE, ORG, more = '' }) 
   <div class="container">
     <div class="glass plan-card reveal">
       <span class="eyebrow">Solitaire Pro</span>
-      <div class="trial gradient-text">One purchase</div>
-      <p>Solitaire is free to play: the whole game, as often as you like, with three hints a game. Now and then a short card between games shows our other apps, and it can be skipped after five seconds. Solitaire Pro, bought once in Google Play or the Amazon Appstore, removes the cards and adds the rest.</p>
-      <div class="plan-points"><span class="tag">No cards between games</span><span class="tag">Unlimited hints</span><span class="tag">4 tables, 4 card backs</span><span class="tag">Statistics</span></div>
+      <div class="trial gradient-text">From $2 a month</div>
+      <p>Solitaire is free to play: the whole game, as often as you like, with three hints a game. A few times a game a short card shows our other apps and my story, and it can be skipped after five seconds. Solitaire Pro is monthly support in Google Play or the Amazon Appstore, at three levels: Bronze $2, Silver $5 or Gold $10 a month. Each one removes the cards and adds the rest.</p>
+      <div class="plan-points"><span class="tag">No cards during games</span><span class="tag">Unlimited hints</span><span class="tag">4 tables, 4 card backs</span><span class="tag">Statistics</span></div>
     </div>
   </div>
 </section>
@@ -82,7 +82,7 @@ export function buildSolitaire({ page, doc, mail, ICON, SITE, ORG, more = '' }) 
   <div class="container narrow">
     <dl class="facts glass prose-block reveal">
       <div><dt>Devices</dt><dd>Android TV &amp; Google TV (Android 7.0+), Fire TV (Fire OS 5+)</dd></div>
-      <div><dt>Price</dt><dd>Free; Solitaire Pro is a one-time purchase</dd></div>
+      <div><dt>Price</dt><dd>Free; Solitaire Pro is monthly support from $2 a month</dd></div>
       <div><dt>Game</dt><dd>Klondike, Draw 1 or Draw 3, 1 player</dd></div>
       <div><dt>Tracking</dt><dd>None. <a href="/solitaire/privacy/">Privacy policy</a></dd></div>
     </dl>
@@ -110,10 +110,10 @@ ${more}`,
 <p>If you are signed in to Google Play Games on your TV, the Google Play version keeps a copy of your record as a saved game in your Google account, so a new TV or a reinstall gets it back. The saved game holds only the numbers listed above, counted per TV under a random number the game makes up, so that two TVs never count the same game twice. It is stored and handled by Google under the <a href="${SOLITAIRE.googlePrivacy}" rel="noopener">Google privacy policy</a>; we cannot see it. You can delete it with your Play Games data (<a href="${SOLITAIRE.playGamesData}" rel="noopener">how</a>). The Amazon version has no such copy.</p>
 
 <h2>3. Purchases</h2>
-<p>Solitaire Pro is sold by Google Play or the Amazon Appstore. The store handles the payment; we never receive your payment details. The game only asks the store whether you own Solitaire Pro. See the <a href="${SOLITAIRE.googlePrivacy}" rel="noopener">Google</a> and <a href="${SOLITAIRE.amazonPrivacy}" rel="noopener">Amazon</a> privacy policies.</p>
+<p>Solitaire Pro is sold by Google Play or the Amazon Appstore. The store handles the payment; we never receive your payment details. The game only asks the store whether you have Solitaire Pro: a support level, or Pro bought before. You can cancel a support level at any time in the store's subscriptions page. See the <a href="${SOLITAIRE.googlePrivacy}" rel="noopener">Google</a> and <a href="${SOLITAIRE.amazonPrivacy}" rel="noopener">Amazon</a> privacy policies.</p>
 
-<h2>4. The cards between games</h2>
-<p>Without Solitaire Pro, a card between games now and then shows another app of ours or Solitaire Pro. The cards are part of the game: no advertising network is involved and nothing about you is sent anywhere to show them. If you choose "See it in the store", the store app opens.</p>
+<h2>4. The cards during a game</h2>
+<p>Without Solitaire Pro, two or three short cards during a game show another app of ours or Solitaire Pro, with a few words about who makes these apps. The cards are part of the game: no advertising network is involved and nothing about you is sent anywhere to show them. If you choose "See it in the store", the store app opens.</p>
 
 <h2>5. Speech</h2>
 <p>"Read aloud" uses the text-to-speech engine installed on your TV. What the game says is spoken by that engine on the TV.</p>
@@ -148,7 +148,7 @@ ${more}`,
 <div class="faq">
 ${[
   qa('How do I play?', 'The arrows move between the piles; up and down inside a pile choose the card a move starts from. OK on the stock deals; OK on a card plays it, or the run from it, to the best place. To choose the place yourself, hold OK (or press Menu) to pick the cards up, go to a pile and press OK to put them down; BACK puts them back. Undo, Hint, New game and Finish are on the right. "How to play" in the menu has the full rules.'),
-  qa('What does Solitaire Pro add?', 'No cards between games, unlimited hints, four table colours and four card backs, and a statistics page for Draw 1 and Draw 3 (win rate, streaks, best time, fewest moves). It is a one-time purchase.'),
+  qa('What does Solitaire Pro add?', 'No cards during games, unlimited hints, four table colours and four card backs, and a statistics page for Draw 1 and Draw 3 (win rate, streaks, best time, fewest moves). It is monthly support: Bronze $2, Silver $5 or Gold $10 a month, and each one gives you all of it. Bought Pro before? You keep it.'),
   qa('I bought Pro but the game does not show it.', 'Pro comes from the store account the TV uses. Make sure the TV is signed in with the account that bought it, then open the game again: it asks the store each time. It also comes back by itself after a reinstall or on another TV with the same account.'),
   qa('Why do I have only three hints?', 'Without Pro, each game has three hints; asking again for the hint already shown costs nothing. Undo is unlimited for everyone.'),
   qa('How do I switch between Draw 1 and Draw 3?', 'In the main menu or the pause menu (BACK). The change applies at once to a game with no moves yet, otherwise from the next game.'),

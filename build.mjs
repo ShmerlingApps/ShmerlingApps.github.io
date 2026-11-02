@@ -419,7 +419,7 @@ const FAQ = [
   ['What do I need to use Downabit?', 'A Telegram account, and a TV with Android TV or Google TV (Android 7.0 or newer) or an Amazon Fire TV with Fire OS 5 or newer. Downabit creates a private channel in your Telegram account; you send files there from your phone.'],
   ['Where can I save files?', 'On the TV itself, a USB drive, a Windows share or NAS on your home network (SMB), a WebDAV server, Google Drive or Dropbox. You choose for every file.'],
   ['Does Downabit see my chats or my files?', 'No. Downabit only reads the private channel it creates for you, and files move straight from Telegram to the place you choose. Nothing is sent to us: there are no ads, no analytics and no tracking.'],
-  ['How much does it cost?', 'Downabit is free to download. Using it needs a monthly or yearly subscription, and every plan starts with a 7-day free trial. Prices are shown in the app in your currency. Cancel any time in Google Play or the Amazon Appstore.'],
+  ['How much does it cost?', 'Downabit is free to download. Using it needs monthly support at one of three levels, Bronze $2, Silver $5 or Gold $10 a month, and each one gives you all of Downabit and starts with a 7-day free trial. The store shows the price in your currency. Already subscribed monthly or yearly? You keep your plan. Cancel any time in Google Play or the Amazon Appstore.'],
   ['Which Fire TV devices are supported?', 'Fire TV devices with Fire OS 5 or newer. Fire TV devices running Vega OS, such as the Fire TV Stick 4K Select and the Fire TV Stick HD (2nd generation), cannot run Android apps.'],
   ['My TV has little storage. Can I still save a film?', 'Yes. Large files stream straight to their destination, so a stick with little free space can pass a film on to your NAS or cloud account without keeping it.'],
 ]
@@ -453,7 +453,7 @@ page('downabit/', {
         applicationCategory: 'MultimediaApplication',
         operatingSystem: 'Android TV, Google TV, Fire OS',
         publisher: { '@id': ORG['@id'] },
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free download; monthly or yearly subscription with a 7-day free trial' },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free download; monthly support from $2 a month with a 7-day free trial' },
         installUrl: DOWNABIT.play || DOWNABIT.amazon,
         privacyPolicy: SITE.url + '/downabit/privacy/',
       },
@@ -490,7 +490,7 @@ page('downabit/', {
       <p>It is built for the remote control: sign in by scanning a code, connect cloud accounts from your phone, and let a daily speed test pick sensible download limits.</p>
       <dl class="facts">
         <div><dt>Devices</dt><dd>Android TV &amp; Google TV (Android 7.0+), Fire TV (Fire OS 5+)</dd></div>
-        <div><dt>Price</dt><dd>Free download, subscription with a 7-day free trial</dd></div>
+        <div><dt>Price</dt><dd>Free download; monthly support from $2 a month with a 7-day free trial</dd></div>
         <div><dt>Languages</dt><dd>30, including right-to-left</dd></div>
         <div><dt>Ads and tracking</dt><dd>None</dd></div>
       </dl>
@@ -577,8 +577,8 @@ page('downabit/', {
     <div class="glass plan-card reveal">
       <span class="eyebrow">Plans</span>
       <div class="trial gradient-text">7 days free</div>
-      <p>Downabit is free to download. Choose a monthly or yearly plan after the trial; prices are shown in the app in your own currency and billed by Google Play or the Amazon Appstore. Cancel any time.</p>
-      <div class="plan-points"><span class="tag">Monthly or yearly</span><span class="tag">Cancel any time</span><span class="tag">All features included</span></div>
+      <p>Downabit is free to download. After the 7-day free trial, choose a monthly support level: Bronze $2, Silver $5 or Gold $10 a month. Each one gives you all of Downabit. The store shows the price in your own currency and bills it through Google Play or the Amazon Appstore. Cancel any time. Already subscribed monthly or yearly? You keep your plan.</p>
+      <div class="plan-points"><span class="tag">From $2 a month</span><span class="tag">Cancel any time</span><span class="tag">All features included</span></div>
       <div class="btn-row" style="justify-content:center"><a class="btn btn-glass" href="/downabit/subscribe/">Manage your subscription ${ICON.arrow}</a></div>
     </div>
   </div>
@@ -810,7 +810,7 @@ page('downabit/subscribe/', {
   nav: 'downabit', sub: 'subscribe',
   body: doc(`
 <h1>Your Downabit subscription</h1>
-<p class="updated">Every plan starts with a 7-day free trial. Prices are shown in the app in your currency.</p>
+<p class="updated">Three monthly support levels, Bronze $2, Silver $5 or Gold $10 a month, each with a 7-day free trial. The store shows the price in your currency.</p>
 
 <h2>Subscribe</h2>
 <p>Subscribe inside Downabit on your TV: the plan screen appears after you sign in, and in Settings &gt; Subscription. Payment is handled by the store your TV uses.</p>

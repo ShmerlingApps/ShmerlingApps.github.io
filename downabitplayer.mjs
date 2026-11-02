@@ -51,8 +51,9 @@ export function buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, mor
         image: SITE.url + '/assets/downabitplayer-icon-256.png',
         publisher: { '@id': ORG['@id'] },
         offers: [
-          { '@type': 'Offer', price: '2.99', priceCurrency: 'USD', description: 'Monthly subscription with a 7-day free trial' },
-          { '@type': 'Offer', price: '29.99', priceCurrency: 'USD', description: 'Yearly subscription' },
+          { '@type': 'Offer', price: '2.00', priceCurrency: 'USD', description: 'Bronze monthly support with a 7-day free trial' },
+          { '@type': 'Offer', price: '5.00', priceCurrency: 'USD', description: 'Silver monthly support with a 7-day free trial' },
+          { '@type': 'Offer', price: '10.00', priceCurrency: 'USD', description: 'Gold monthly support with a 7-day free trial' },
         ],
         privacyPolicy: SITE.url + '/downabit-player/privacy/',
       }],
@@ -123,8 +124,8 @@ export function buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, mor
     <div class="glass plan-card reveal">
       <span class="eyebrow">Plans</span>
       <div class="trial gradient-text">7 days free</div>
-      <p>Downabit Player is a subscription: $2.99 a month, starting with a 7-day free trial, or $29.99 a year. It is billed by Google Play or the Amazon Appstore and renews until you cancel. Cancel any time in the store.</p>
-      <div class="plan-points"><span class="tag">$2.99 a month</span><span class="tag">$29.99 a year</span><span class="tag">Cancel any time</span></div>
+      <p>Downabit Player is monthly support at three levels: Bronze $2, Silver $5 or Gold $10 a month. Each one gives you all of Downabit Player and starts with a 7-day free trial. It is billed by Google Play or the Amazon Appstore and renews until you cancel. Cancel any time in the store. Already subscribed monthly or yearly? You keep your plan.</p>
+      <div class="plan-points"><span class="tag">From $2 a month</span><span class="tag">7 days free</span><span class="tag">Cancel any time</span></div>
       <div class="btn-row" style="justify-content:center"><a class="btn btn-glass" href="/downabit-player/support/#subscription">Manage your subscription ${ICON.arrow}</a></div>
     </div>
   </div>
@@ -134,7 +135,7 @@ export function buildDownabitPlayer({ page, doc, mail, ICON, SITE, ORG, svg, mor
   <div class="container narrow">
     <dl class="facts glass prose-block reveal">
       <div><dt>Devices</dt><dd>Android TV, Google TV and Fire TV</dd></div>
-      <div><dt>Price</dt><dd>$2.99 a month with a 7-day free trial, or $29.99 a year</dd></div>
+      <div><dt>Price</dt><dd>Monthly support from $2 a month, with a 7-day free trial</dd></div>
       <div><dt>Languages</dt><dd>English and Hebrew</dd></div>
       <div><dt>Ads and tracking</dt><dd>None. <a href="/downabit-player/privacy/">Privacy policy</a></dd></div>
     </dl>
@@ -218,7 +219,7 @@ ${[
   qa('Can I use it without reading the screen?', 'Yes. Downabit Player works with TalkBack. Without it, go to Settings &gt; Accessibility &gt; Read aloud and choose Read everything (menus, buttons, films, songs and the player) or Read only file names. While TalkBack is on, the app stays quiet, so you never hear two voices.'),
   qa('Can I type without the TV keyboard?', 'Yes. Every text box shows a code next to it. Scan it with your phone (on the same Wi-Fi as the TV), type there and send: the text appears on the TV, ready to save.'),
   qa('Which languages does the app speak?', 'English and Hebrew.'),
-  qa('How much does it cost?', '$2.99 a month, starting with a 7-day free trial, or $29.99 a year, through Google Play or the Amazon Appstore. The subscription renews until you cancel it.'),
+  qa('How much does it cost?', 'Monthly support at one of three levels, Bronze $2, Silver $5 or Gold $10 a month, through Google Play or the Amazon Appstore. Each one gives you all of Downabit Player and starts with a 7-day free trial. It renews until you cancel it. Already subscribed monthly or yearly? You keep your plan.'),
   qa('I subscribed but the app still shows the plans.', 'The subscription comes from the store account the TV uses. Make sure the TV is signed in to the same Google or Amazon account you subscribed with, then open Downabit Player again.'),
 ].join('\n')}
 </div>
