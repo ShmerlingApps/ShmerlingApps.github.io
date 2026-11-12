@@ -99,13 +99,13 @@ ${toc([['demo', 'Try the demo'], ['sign-in', 'Sign in'], ['channel', 'Your chann
 <div class="note">Downabit never sees your code or password leave the TV: they go straight to Telegram. See the <a href="/downabit/privacy/">privacy policy</a>.</div>
 
 <h2 id="channel">Your private channel</h2>
-<p>After signing in, Downabit creates a private channel called <strong>Downabit</strong> in your account (or uses one you already have with that name). It is private: only you, and anyone you add yourself, can see it. Downabit reads only this one channel, never your chats.</p>
-<p>You can rename it or switch to another channel in ${path('Settings', 'Account &amp; channel')}.</p>
+<p>After signing in, Downabit creates a private channel called <strong>Downabit</strong> in your account (or uses a private channel with that name that you created earlier; a channel you only joined, or a public one, is never used). It is private: only you, and anyone you add yourself, can see it. Downabit reads only this one channel, never your chats.</p>
+<p>You can rename it or switch to another private channel of your own in ${path('Settings', 'Account &amp; channel')}.</p>
 
 <h2 id="send">Send files to the TV</h2>
 <ol class="steps">
   <li>On your phone or computer, open Telegram and find the <strong>Downabit</strong> channel.</li>
-  <li>Send a video, picture, song or document, or forward one from any chat.</li>
+  <li>Send your own video, picture, song or document. Send only files that are yours or that you have the right to copy.</li>
   <li>On the TV it appears in <strong>Files</strong> a moment later. Press ${btn('Refresh')} if it is not there yet.</li>
 </ol>
 <p><strong>Tip:</strong> to keep photos and videos in full quality, send them <em>as a file</em> (in Telegram's attach menu choose <em>File</em> instead of <em>Gallery</em>). Telegram compresses pictures sent the normal way.</p>

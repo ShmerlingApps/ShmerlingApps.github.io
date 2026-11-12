@@ -735,7 +735,7 @@ page('downabit/support/', {
 <h2>Getting started</h2>
 <div class="faq">
 ${qa('How do I sign in?', 'Open Downabit and choose "Log in with QR code". On your phone, open Telegram, go to Settings &gt; Devices &gt; Link Desktop Device and scan the code. You can also enter your phone number and the code Telegram sends you.')}
-${qa('Where do I send files?', 'On first start Downabit creates a private channel called "Downabit" in your Telegram account. Send or forward files there from any Telegram app. They appear in the Files tab; press Refresh if one is missing.')}
+${qa('Where do I send files?', 'On first start Downabit creates a private channel called "Downabit" in your Telegram account. Send your own photos, videos and files there from any Telegram app. They appear in the Files tab; press Refresh if one is missing.')}
 ${qa('Where are my downloads?', 'In My files, with a badge for every place a file is kept. On the TV itself they are in the Download/Downabit folder; on a USB drive, network share or cloud account in a folder called Downabit.')}
 </div>
 
